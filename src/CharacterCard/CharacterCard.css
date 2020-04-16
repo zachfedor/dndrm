@@ -1,0 +1,34 @@
+.CharacterCard {
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.CharacterCard header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.CharacterCard header h2 {
+  margin: 0;
+  text-align: left;
+}
+
+.CharacterCard header dl {
+  display: flex;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.CharacterCard header dl dt {
+  color: var(--gray);
+  text-transform: uppercase;
+}
+
+.CharacterCard header dl dd {
+  margin: 0 0 0 1rem;
+}
+
+.CharacterCard .StatList {
+  margin: 0.5rem 0 0;
+}
+
