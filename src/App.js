@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 import CharacterCard from './CharacterCard';
 import './App.css';
@@ -39,11 +41,32 @@ function App() {
         <h1>D&amp;D Character Sheet Manager</h1>
       </header>
 
-      <main>
-        {characters.map(character => (
-          <CharacterCard key={character.name} character={character} />
-        ))}
-      </main>
+      <Tabs>
+        <TabList>
+          <Tab>Overview</Tab>
+          <Tab>Characters</Tab>
+          <Tab>NPCs</Tab>
+          <Tab>Monsters</Tab>
+        </TabList>
+
+        <TabPanel>
+          {characters.map(character => (
+            <CharacterCard key={character.name} character={character} />
+          ))}
+        </TabPanel>
+
+        <TabPanel>
+          <p>characters panel</p>
+        </TabPanel>
+
+        <TabPanel>
+          <p>npcs panel</p>
+        </TabPanel>
+
+        <TabPanel>
+          <p>monsters panel</p>
+        </TabPanel>
+      </Tabs>
     </div>
   );
 }
