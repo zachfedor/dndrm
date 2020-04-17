@@ -27,8 +27,8 @@
 
 html {
   background: var(--bg);
-  font-size: 18px;
-  font-size: calc(10px + 2vmin);
+  font-size: 16px;
+  font-size: calc(2px + 2vmin);
 }
 
 body {

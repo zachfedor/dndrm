@@ -14,37 +14,41 @@ function App() {
   const characters = [{
     name: 'Character One',
     hp: 41,
-    abilities: [
-      { name: 'Strength', score: 10 },
-      { name: 'Dexterity', score: 15 },
-      { name: 'Constitution', score: 14 },
-      { name: 'Intelligence', score: 16 },
-      { name: 'Wisdom', score: 12 },
-      { name: 'Charisma', score: 8 },
-    ],
+    abilities: {
+      strength: 10,
+      dexterity: 15,
+      constitution: 14,
+      intelligence: 16,
+      wisdom: 12,
+      charisma: 8,
+    },
   }, {
     name: 'Character Two',
     hp: 36,
-    abilities: [
-      { name: 'Strength', score: 10 },
-      { name: 'Dexterity', score: 15 },
-      { name: 'Constitution', score: 14 },
-      { name: 'Intelligence', score: 16 },
-      { name: 'Wisdom', score: 12 },
-      { name: 'Charisma', score: 8 },
-    ],
+    abilities: {
+      strength: 10,
+      dexterity: 15,
+      constitution: 14,
+      intelligence: 16,
+      wisdom: 12,
+      charisma: 8,
+    },
+    spellSlots: {
+      1: [true, true, false],
+      2: [true]
+    }
   }];
 
   return (
     <div className="App">
       <header className="App-header">
-        <h1>D&amp;D Character Sheet Manager</h1>
+        <h1>D<span>&amp;</span>DRM</h1>
       </header>
 
       <Tabs>
         <TabList>
           <Tab>Overview</Tab>
-          <Tab>Characters</Tab>
+          <Tab>Players</Tab>
           <Tab>NPCs</Tab>
           <Tab>Monsters</Tab>
         </TabList>

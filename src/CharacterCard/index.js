@@ -1,5 +1,6 @@
 import React from 'react';
 
+import SpellSlots from './SpellSlots';
 import StatList from './StatList';
 import Stat from './Stat';
 import './CharacterCard.css';
@@ -20,18 +21,15 @@ const CharacterCard = ({ character }) => {
       </header>
 
       <StatList>
-        {character.abilities.map(({name, score}) => (
+        {Object.keys(character.abilities).map(name => (
           <Stat
             key={name}
             label={name.substr(0,3)}
-            value={getAbilityModifier(score)}
+            value={getAbilityModifier(character.abilities[name])}
             sign={true}
             tooltip={`Ability Score: ${name}`}
           />
         ))}
-      </StatList>
-
-      <StatList>
         <Stat label="Insp" value={0} tooltip="Inspiration Points" />
         <Stat label="Prof" value={2} sign={true} tooltip="Proficiency Bonus" />
         <Stat label="AC" value={12} tooltip="Armor Class" />
@@ -39,6 +37,10 @@ const CharacterCard = ({ character }) => {
         <Stat label="Init" value={2} sign={true} tooltip="Initiative Bonus" />
         <Stat label="Perc" value={0} tooltip="Passive Perception" />
       </StatList>
+
+      {character.spellSlots && (
+        <SpellSlots slots={character.spellSlots} />
+      )}
     </article>
   );
 };
