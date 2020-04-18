@@ -5,12 +5,6 @@ import './SpellSlots.css';
 const SpellSlots = (props) => {
   const slotsPerLevel = props.slots;
 
-  const burnSlot = (level) => {
-    console.log(slotsPerLevel, level)
-    slotsPerLevel[level].pop();
-    slotsPerLevel[level].push(true);
-  };
-
   return (
     <div className="SpellSlots">
       <legend>Spell Slots</legend>
@@ -21,7 +15,12 @@ const SpellSlots = (props) => {
 
           <div>
           {slotsPerLevel[level].map((slot, index) => (
-            <input key={level + '-' + index} type="checkbox" checked={slot} onChange={() => burnSlot(level)}/>
+            <input
+              key={index}
+              type="checkbox"
+              checked={slot}
+              onChange={() => props.toggleSpellSlot(level, index)}
+            />
           ))}
           </div>
         </fieldset>

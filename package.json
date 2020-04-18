@@ -1,7 +1,7 @@
 {
-  "name": "dnd",
+  "name": "dndrm",
   "version": "0.0.1",
-  "description": "D&D Character Sheet Manager",
+  "description": "D&D Remote Manager",
   "author": "Zach Fedor <zachfedor@gmail.com> (http://zachfedor.me/)",
   "license": "MIT",
   "private": true,

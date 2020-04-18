@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
+import { DispatchContext } from '../App';
 import SpellSlots from './SpellSlots';
 import StatList from './StatList';
 import Stat from './Stat';
@@ -9,6 +10,18 @@ const getAbilityModifier = score => Math.floor((score - 10) / 2);
 
 
 const CharacterCard = ({ character }) => {
+  let hpStatus = 'healthy';
+  if (character.hp.current / character.hp.max < 0.33) hpStatus = 'deathly';
+  else if (character.hp.current / character.hp.max < 0.66) hpStatus = 'bloody';
+
+  const dispatch = useContext(DispatchContext);
+  const toggleSpellSlot = (level, slot) => dispatch({
+    type: 'toggleSpellSlot',
+    characterID: character.id,
+    level,
+    slot
+  });
+
   return (
     <article className="CharacterCard">
       <header>
@@ -16,7 +29,7 @@ const CharacterCard = ({ character }) => {
 
         <dl className="hitpoints" title="Current Hit Points">
           <dt>HP:</dt>
-          <dd>{character.hp}</dd>
+          <dd className={hpStatus}>{character.hp.current}</dd>
         </dl>
       </header>
 
@@ -39,7 +52,7 @@ const CharacterCard = ({ character }) => {
       </StatList>
 
       {character.spellSlots && (
-        <SpellSlots slots={character.spellSlots} />
+        <SpellSlots slots={character.spellSlots} toggleSpellSlot={toggleSpellSlot} />
       )}
     </article>
   );

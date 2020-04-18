@@ -6,6 +6,7 @@
 .CharacterCard header {
   display: flex;
   justify-content: space-between;
+  margin: 2rem 0 0;
 }
 
 .CharacterCard header h2 {
@@ -27,8 +28,17 @@
 .CharacterCard header dl dd {
   margin: 0 0 0 1rem;
 }
+.healthy {
+  color: var(--green);
+}
+.bloody {
+  color: var(--yellow);
+}
+.deathly {
+  color: var(--red);
+}
 
 .CharacterCard .StatList {
-  margin: 0.5rem 0 0;
+  margin: 1rem 0 0;
 }
 
