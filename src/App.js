@@ -3,6 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 import OverviewPanel from './OverviewPanel';
+import PlayersPanel from './PlayersPanel';
 import './App.css';
 
 
@@ -18,6 +19,9 @@ const initialState = {
     1: {
       id: 1,
       name: 'Character One',
+      race: 'Human',
+      class: 'Fighter',
+      level: 3,
       hp: {
         current: 41,
         max: 45,
@@ -34,6 +38,9 @@ const initialState = {
     2: {
       id: 2,
       name: 'Character Two',
+      race: 'Elf',
+      class: 'Wizard',
+      level: 2,
       hp: {
         current: 23,
         max: 36,
@@ -56,6 +63,21 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case 'changeAbilityScore':
+      const { id, ability, score } = action;
+      return {
+        ...state,
+        characters: {
+          ...state.characters,
+          [id]: {
+            ...state.characters[id],
+            abilities: {
+              ...state.characters[id].abilities,
+              [ability]: score
+            }
+          }
+        }
+      };
     case 'toggleSpellSlot':
       const { characterID, level, slot } = action;
       const character = state.characters[characterID];
@@ -105,7 +127,7 @@ const App = () => {
             </TabPanel>
 
             <TabPanel>
-              <p>characters panel</p>
+              <PlayersPanel />
             </TabPanel>
 
             <TabPanel>

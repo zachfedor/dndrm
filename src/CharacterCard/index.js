@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
 
 import { DispatchContext } from '../App';
+import { getAbilityModifier } from '../formulas';
 import SpellSlots from './SpellSlots';
 import StatList from './StatList';
 import Stat from './Stat';
 import './CharacterCard.css';
-
-const getAbilityModifier = score => Math.floor((score - 10) / 2);
 
 
 const CharacterCard = ({ character }) => {
@@ -26,6 +25,8 @@ const CharacterCard = ({ character }) => {
     <article className="CharacterCard">
       <header>
         <h2>{character.name}</h2>  
+
+        <p>{character.race} {character.class}</p>
 
         <dl className="hitpoints" title="Current Hit Points">
           <dt>HP:</dt>

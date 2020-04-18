@@ -1,0 +1,22 @@
+.Abilities td {
+  text-transform: capitalize;
+
+}
+
+.Abilities td + td {
+  text-align: right;
+}
+
+.Abilities td input {
+  min-width: 1rem;
+}
+
+.Abilities input[type=number]::-webkit-inner-spin-button, 
+.Abilities input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.Abilities td button {
+  cursor: pointer;
+}

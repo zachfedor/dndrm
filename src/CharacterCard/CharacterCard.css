@@ -4,6 +4,7 @@
 }
 
 .CharacterCard header {
+  align-items: baseline;
   display: flex;
   justify-content: space-between;
   margin: 2rem 0 0;
@@ -12,6 +13,12 @@
 .CharacterCard header h2 {
   margin: 0;
   text-align: left;
+}
+
+.CharacterCard header p {
+  margin: 0 auto 0 1rem;
+  color: var(--orange-dark);
+  font-style: italic;
 }
 
 .CharacterCard header dl {

@@ -13,13 +13,17 @@
 }
 
 .react-tabs__tab-list {
-  border-bottom: 1px solid var(--fg);
+  border-bottom: 1px solid var(--gray-light);
   text-align: left;
+}
+
+.react-tabs__tab {
+  color: var(--gray);
 }
 
 .react-tabs__tab:focus {
   box-shadow: 0 0 5px var(--gray-dark);
-  border-color: var(--gray-dark);
+  border-color: var(--gray-light);
 }
 
 .react-tabs__tab:focus:after {
@@ -28,6 +32,6 @@
 
 .react-tabs__tab--selected {
   background: var(--bg);
-  border-color: var(--fg);
+  border-color: var(--gray-light);
   color: var(--fg);
 }
