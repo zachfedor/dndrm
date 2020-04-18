@@ -3,6 +3,7 @@ import React, { useState, useContext } from 'react';
 import { DispatchContext } from '../App';
 import { ABILITY_DESCRIPTIONS } from '../constants';
 import { getAbilityModifier } from '../formulas';
+import { Button, Input } from '../atoms';
 import './Abilities.css';
 
 
@@ -40,7 +41,7 @@ const Abilities = (props) => {
           <tr>
             <th></th>
             <th>Score</th>
-            <th>Modifier</th>
+            <th>Mod</th>
           </tr>
         </thead>
         <tbody>
@@ -50,23 +51,24 @@ const Abilities = (props) => {
             <td>
               {currentlyEditing === ability ? (
                 <form onSubmit={onSubmit(ability)}>
-                  <input
+                  <Input
                     type="number"
-                    min="0"
-                    max="20"
+                    min="1"
+                    max="30"
                     autoFocus
                     onChange={onChange(ability)}
                     value={abilities[ability]}
                   />
-                  <input type="submit" value="Save" />
+                  <Button type="submit">Save</Button>
                 </form>
               ) : (
-                <button
+                <Button
+                  className="editable"
                   onClick={() => setEditing(ability)}
                   title="Edit Ability"
                 >
                   {abilities[ability]}
-                </button>
+                </Button>
               )}
             </td>
             <td>{addSign(getAbilityModifier(abilities[ability]))}</td>

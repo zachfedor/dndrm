@@ -1,0 +1,25 @@
+.Button {
+  background: none;
+  border: 2px solid var(--aqua);
+  color: var(--fg);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.2rem 0.5rem;
+}
+.Button:hover,
+.Button:focus {
+  box-shadow: 0 0 5px var(--aqua);
+  color: var(--aqua-dark);
+  outline: none;
+}
+
+.Button.editable {
+  border: 0;
+  border-bottom: 2px dotted var(--aqua);
+  color: var(--fg);
+}
+.Button.editable:hover,
+.Button.editable:focus {
+  border-bottom-style: solid;
+  color: var(--fg);
+}

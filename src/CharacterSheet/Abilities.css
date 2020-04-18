@@ -1,9 +1,16 @@
-.Abilities td {
-  text-transform: capitalize;
-
+.Abilities table {
+  border-collapse: collapse;
 }
 
-.Abilities td + td {
+.Abilities td,
+.Abilities th {
+  padding: 0.2rem 0.5rem;
+  text-align: left;
+  text-transform: capitalize;
+}
+
+.Abilities td:last-of-type,
+.Abilities th:last-of-type {
   text-align: right;
 }
 
@@ -17,6 +24,13 @@
   margin: 0; 
 }
 
-.Abilities td button {
-  cursor: pointer;
+.Abilities td button,
+.Abilities td input {
+  margin: 0;
+  min-width: 3rem;
+  text-align: center;
+}
+
+.Abilities .Input {
+  margin-right: 1rem;
 }
