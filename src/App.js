@@ -27,13 +27,14 @@ const initialState = {
         max: 45,
       },
       abilities: {
-        strength: 10,
-        dexterity: 15,
-        constitution: 14,
-        intelligence: 16,
-        wisdom: 12,
-        charisma: 8,
+        strength: 16,
+        dexterity: 14,
+        constitution: 15,
+        intelligence: 9,
+        wisdom: 11,
+        charisma: 13,
       },
+      savingThrows: ['strength'],
       proficiencies: ['nature', 'sleight of hand', 'deception'],
     },
     2: {
@@ -54,6 +55,7 @@ const initialState = {
         wisdom: 12,
         charisma: 8,
       },
+      savingThrows: ['intelligence'],
       proficiencies: ['arcana', 'history', 'investigation'],
       spellSlots: {
         1: [true, true, false],

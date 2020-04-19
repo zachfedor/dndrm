@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 
 import { DispatchContext } from '../App';
 import { ABILITY_DESCRIPTIONS } from '../constants';
-import { getAbilityModifier } from '../formulas';
+import { getAbilityModifier, getProficiencyBonus } from '../formulas';
 import { Button, Input, Table } from '../atoms';
 import './Abilities.css';
 
@@ -13,6 +13,8 @@ const Abilities = (props) => {
   const dispatch = useContext(DispatchContext);
   const [abilities, setAbilities] = useState(props.abilities);
   const [currentlyEditing, setEditing] = useState();
+
+  const bonus = addSign(getProficiencyBonus(props.level));
 
   const onChange = (ability) => (event) => {
     setAbilities({
@@ -42,11 +44,12 @@ const Abilities = (props) => {
             <th></th>
             <th>Score</th>
             <th>Mod</th>
+            <th>Save</th>
           </tr>
         </thead>
         <tbody>
         {Object.keys(abilities).map(ability => (
-          <tr key={ability}>
+          <tr key={ability} className={props.savingThrows.includes(ability) ? 'proficiency' : ''}>
             <td title={ABILITY_DESCRIPTIONS[ability]}>{ability}</td>
             <td>
               {currentlyEditing === ability ? (
@@ -72,6 +75,7 @@ const Abilities = (props) => {
               )}
             </td>
             <td>{addSign(getAbilityModifier(abilities[ability]))}</td>
+            <td>{props.savingThrows.includes(ability) && bonus}</td>
           </tr>
         ))}
         </tbody>

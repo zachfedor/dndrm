@@ -7,6 +7,11 @@
   text-transform: capitalize;
 }
 
+.Abilities tr.proficiency td {
+  color: var(--orange-dark);
+  font-weight: bold;
+}
+
 .Abilities td input {
   min-width: 1rem;
 }
