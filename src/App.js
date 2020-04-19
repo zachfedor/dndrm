@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
@@ -14,63 +14,21 @@ export const StateContext = React.createContext();
 export const DispatchContext = React.createContext();
 
 
+// spellSlots: {
+//   1: [true, true, false],
+//   2: [true]
+// }
 const initialState = {
-  characters: {
-    1: {
-      id: 1,
-      name: 'Character One',
-      race: 'Human',
-      class: 'Fighter',
-      level: 3,
-      background: 'Soldier',
-      alignment: 'Lawful Good',
-      hp: {
-        current: 41,
-        max: 45,
-      },
-      abilities: {
-        strength: 16,
-        dexterity: 14,
-        constitution: 15,
-        intelligence: 9,
-        wisdom: 11,
-        charisma: 13,
-      },
-      savingThrows: ['strength'],
-      proficiencies: ['nature', 'sleight of hand', 'deception'],
-    },
-    2: {
-      id: 2,
-      name: 'Character Two',
-      race: 'Elf',
-      class: 'Wizard',
-      level: 2,
-      background: 'Acolyte',
-      alignment: 'Chaotic Good',
-      hp: {
-        current: 23,
-        max: 36,
-      },
-      abilities: {
-        strength: 10,
-        dexterity: 15,
-        constitution: 14,
-        intelligence: 16,
-        wisdom: 12,
-        charisma: 8,
-      },
-      savingThrows: ['intelligence'],
-      proficiencies: ['arcana', 'history', 'investigation'],
-      spellSlots: {
-        1: [true, true, false],
-        2: [true]
-      }
-    }
-  }
+  characters: {}
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case 'loadCharacters':
+      return {
+        ...state,
+        characters: action.characters,
+      };
     case 'changeAbilityScore':
       return {
         ...state,
@@ -120,9 +78,13 @@ const reducer = (state, action) => {
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // useEffect(() => {
-  //   fetch('/api').then(res => console.log(res));
-  // });
+  useEffect(() => {
+    fetch('/api/characters')
+      .then(res => res.json())
+      .then(data => {
+        dispatch({ type: 'loadCharacters', characters: data.characters });
+      });
+  });
 
   return (
     <DispatchContext.Provider value={dispatch}>

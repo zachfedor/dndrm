@@ -49,7 +49,7 @@ const Abilities = (props) => {
         </thead>
         <tbody>
         {Object.keys(abilities).map(ability => (
-          <tr key={ability} className={props.savingThrows.includes(ability) ? 'proficiency' : ''}>
+          <tr key={ability} className={props.savingthrows.includes(ability) ? 'proficiency' : ''}>
             <td title={ABILITY_DESCRIPTIONS[ability]}>{ability}</td>
             <td>
               {currentlyEditing === ability ? (
@@ -75,7 +75,7 @@ const Abilities = (props) => {
               )}
             </td>
             <td>{addSign(getAbilityModifier(abilities[ability]))}</td>
-            <td>{props.savingThrows.includes(ability) && bonus}</td>
+            <td>{props.savingthrows.includes(ability) && bonus}</td>
           </tr>
         ))}
         </tbody>
