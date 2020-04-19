@@ -15,3 +15,15 @@
   outline: none;
 }
 
+.Input::placeholder {
+  color: var(--gray);
+  font-style: italic;
+}
+
+.Input::-webkit-calendar-picker-indicator {
+  background: none;
+  color: var(--aqua);
+  cursor: pointer;
+  margin-right: -0.25rem;
+}
+

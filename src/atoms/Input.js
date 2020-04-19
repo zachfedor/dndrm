@@ -1,10 +1,11 @@
 import React from 'react';
 
+import { cx } from '../utils';
 import './Input.css';
 
-const Input = (props) => {
+const Input = ({ className, ...props }) => {
   return (
-    <input {...props} className={`Input ${props.className}`} />
+    <input {...props} className={cx('Input', className)} />
   );
 };
 

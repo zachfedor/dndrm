@@ -1,10 +1,11 @@
 import React from 'react';
 
+import { cx } from '../utils';
 import './Button.css';
 
-const Button = ({children, ...props}) => {
+const Button = ({children, className, ...props}) => {
   return (
-    <button {...props} className={'Button ' + props.className} >
+    <button {...props} className={cx('Button', className)} >
       {children}
     </button>
   );
