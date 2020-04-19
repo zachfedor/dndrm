@@ -2,30 +2,13 @@
   margin: 0;
 }
 
-.Abilities table {
-  border-collapse: collapse;
-}
-
 .Abilities td,
 .Abilities th {
-  padding: 0.2rem 0.5rem;
-  text-align: left;
   text-transform: capitalize;
-}
-
-.Abilities td:last-of-type,
-.Abilities th:last-of-type {
-  text-align: right;
 }
 
 .Abilities td input {
   min-width: 1rem;
-}
-
-.Abilities input[type=number]::-webkit-inner-spin-button, 
-.Abilities input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
 }
 
 .Abilities td button,

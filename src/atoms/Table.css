@@ -1,0 +1,14 @@
+.Table {
+  border-collapse: collapse;
+}
+
+.Table td,
+.Table th {
+  padding: 0.2rem 0.5rem;
+  text-align: center;
+}
+
+.Table td:first-of-type,
+.Table th:first-of-type {
+  text-align: left;
+}

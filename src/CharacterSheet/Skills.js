@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 
 import { DispatchContext } from '../App';
-import { Button, Input } from '../atoms';
+import { Button, Input, Table } from '../atoms';
 import { SKILLS } from '../constants';
 import { getAbilityModifier, getProficiencyBonus } from '../formulas';
 import './Skills.css';
@@ -48,7 +48,7 @@ const Skills = (props) => {
     <section className="Skills">
       <h3>Skills</h3>
       
-      <table>
+      <Table>
         <thead>
           <tr>
             <th></th>
@@ -71,7 +71,7 @@ const Skills = (props) => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
 
       <form onSubmit={onSubmit}>
         <datalist id="skillDataList">

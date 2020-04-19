@@ -3,7 +3,7 @@ import React, { useState, useContext } from 'react';
 import { DispatchContext } from '../App';
 import { ABILITY_DESCRIPTIONS } from '../constants';
 import { getAbilityModifier } from '../formulas';
-import { Button, Input } from '../atoms';
+import { Button, Input, Table } from '../atoms';
 import './Abilities.css';
 
 
@@ -36,7 +36,7 @@ const Abilities = (props) => {
     <section className="Abilities">
       <h3>Abilities</h3>
 
-      <table>
+      <Table>
         <thead>
           <tr>
             <th></th>
@@ -75,7 +75,7 @@ const Abilities = (props) => {
           </tr>
         ))}
         </tbody>
-      </table>
+      </Table>
     </section>
   );
 };
