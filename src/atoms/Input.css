@@ -1,8 +1,9 @@
 .Input {
   background: none;
   border: 0;
-  border-bottom: 2px solid var(--aqua);
+  border: 1px dotted var(--aqua);
   color: var(--fg);
+  font-family: 'Lora', Georgia, serifs;
   font-size: 1rem;
   padding: 0.2rem 0.5rem;
 }
@@ -10,6 +11,7 @@
 .Input:hover,
 .Input:focus {
   box-shadow: 0 0 5px var(--aqua);
+  border-style: solid;
   outline: none;
 }
 

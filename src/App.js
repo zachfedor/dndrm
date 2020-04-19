@@ -34,6 +34,7 @@ const initialState = {
         wisdom: 12,
         charisma: 8,
       },
+      proficiencies: ['nature', 'sleight of hand', 'deception'],
     },
     2: {
       id: 2,
@@ -53,6 +54,7 @@ const initialState = {
         wisdom: 12,
         charisma: 8,
       },
+      proficiencies: ['arcana', 'history', 'investigation'],
       spellSlots: {
         1: [true, true, false],
         2: [true]
@@ -64,17 +66,27 @@ const initialState = {
 const reducer = (state, action) => {
   switch (action.type) {
     case 'changeAbilityScore':
-      const { id, ability, score } = action;
       return {
         ...state,
         characters: {
           ...state.characters,
-          [id]: {
-            ...state.characters[id],
+          [action.id]: {
+            ...state.characters[action.id],
             abilities: {
-              ...state.characters[id].abilities,
-              [ability]: score
+              ...state.characters[action.id].abilities,
+              [action.ability]: action.score
             }
+          }
+        }
+      };
+    case 'updateProficiencies':
+      return {
+        ...state,
+        characters: {
+          ...state.characters,
+          [action.id]: {
+            ...state.characters[action.id],
+            proficiencies: action.proficiencies
           }
         }
       };

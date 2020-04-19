@@ -1,0 +1,39 @@
+.Skills {
+  margin-top: 2rem;
+}
+
+.Skills h3 {
+  margin: 0;
+}
+
+.Skills table {
+  border-collapse: collapse;
+}
+
+.Skills td,
+.Skills th {
+  padding: 0.2rem 0.5rem;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.Skills td:first-of-type {
+  text-align: left;
+}
+
+.Skills tr.proficiency td {
+  color: var(--orange-dark);
+  font-weight: bold;
+}
+.Skills td.ability {
+  color: var(--gray);
+  text-align: center;
+}
+
+.Skills form {
+  margin-top: 1rem;
+}
+
+.Skills form button {
+  margin-left: 1rem;
+}

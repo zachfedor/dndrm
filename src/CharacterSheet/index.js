@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Abilities from './Abilities';
+import Skills from './Skills';
 import './index.css';
 
 const CharacterSheet = (props) => {
@@ -12,7 +13,8 @@ const CharacterSheet = (props) => {
         <h2>{character.name}</h2>
       </header>
 
-      <Abilities abilities={character.abilities} id={character.id} />
+      <Abilities {...character} />
+      <Skills {...character} />
     </article>
   );
 };

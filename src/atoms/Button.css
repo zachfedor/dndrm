@@ -1,8 +1,9 @@
 .Button {
   background: none;
-  border: 2px solid var(--aqua);
+  border: 1px solid var(--aqua);
   color: var(--fg);
   cursor: pointer;
+  font-family: 'Lora', Georgia, serifs;
   font-size: 1rem;
   padding: 0.2rem 0.5rem;
 }
@@ -15,11 +16,11 @@
 
 .Button.editable {
   border: 0;
-  border-bottom: 2px dotted var(--aqua);
+  border: 1px dotted var(--aqua);
   color: var(--fg);
 }
 .Button.editable:hover,
 .Button.editable:focus {
-  border-bottom-style: solid;
+  border-style: solid;
   color: var(--fg);
 }

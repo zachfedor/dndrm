@@ -1,3 +1,7 @@
+.Abilities h3 {
+  margin: 0;
+}
+
 .Abilities table {
   border-collapse: collapse;
 }
