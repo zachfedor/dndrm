@@ -29,15 +29,18 @@ const Skills = (props) => {
   const onSubmit = (event) => {
     event.preventDefault();
     const input = skillInput.toLowerCase();
-    const proficiencies = props.proficiencies.includes(input)
-      ? props.proficiencies.filter(skill => skill !== input)
-      : [ ...props.proficiencies, input ];
 
-    dispatch({
-      type: 'updateProficiencies',
-      id: props.id,
-      proficiencies,
-    });
+    if (SKILLS.filter(s => s.name === input).length) {
+      const proficiencies = props.proficiencies.includes(input)
+        ? props.proficiencies.filter(skill => skill !== input)
+        : [ ...props.proficiencies, input ];
+
+      dispatch({
+        type: 'updateProficiencies',
+        id: props.id,
+        proficiencies,
+      });
+    }
     setSkillInput('');
   };
 
