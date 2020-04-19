@@ -22,6 +22,8 @@ const initialState = {
       race: 'Human',
       class: 'Fighter',
       level: 3,
+      background: 'Soldier',
+      alignment: 'Lawful Good',
       hp: {
         current: 41,
         max: 45,
@@ -43,6 +45,8 @@ const initialState = {
       race: 'Elf',
       class: 'Wizard',
       level: 2,
+      background: 'Acolyte',
+      alignment: 'Chaotic Good',
       hp: {
         current: 23,
         max: 36,

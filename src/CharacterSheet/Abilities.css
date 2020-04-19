@@ -1,4 +1,10 @@
+.Abilities {
+  margin-top: 2rem;
+}
+
 .Abilities h3 {
+  color: var(--blue);
+  font-style: italic;
   margin: 0;
 }
 

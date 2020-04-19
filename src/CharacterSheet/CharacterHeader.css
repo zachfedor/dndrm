@@ -1,0 +1,30 @@
+.CharacterHeader {
+  margin-top: 2rem;
+}
+
+.CharacterHeader h2 {
+  margin: 0;
+}
+
+.CharacterHeader form div {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.CharacterHeader form .details .LabeledInput .Input,
+.CharacterHeader form .stats .LabeledInput .Input {
+  width: 100%;
+}
+
+.CharacterHeader form .details .LabeledInput {
+  margin-top: 1rem;
+  min-width: 150px;
+  width: 20%;
+}
+
+.CharacterHeader form .stats .LabeledInput {
+  margin-top: 1rem;
+  min-width: 70px;
+  width: 12%;
+}

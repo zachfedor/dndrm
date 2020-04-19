@@ -1,0 +1,11 @@
+.LabeledInput {
+  display: flex;
+  flex-flow: column-reverse;
+}
+
+.LabeledInput label {
+  color: var(--aqua);
+  font-style: italic;
+  padding: 0.2rem 0.5rem;
+  text-transform: capitalize;
+}

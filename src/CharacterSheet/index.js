@@ -1,5 +1,6 @@
 import React from 'react';
 
+import CharacterHeader from './CharacterHeader';
 import Abilities from './Abilities';
 import Skills from './Skills';
 import './index.css';
@@ -9,9 +10,7 @@ const CharacterSheet = (props) => {
 
   return (
     <article className="CharacterSheet">
-      <header>
-        <h2>{character.name}</h2>
-      </header>
+      <CharacterHeader {...character} />
 
       <Abilities {...character} />
       <Skills {...character} />

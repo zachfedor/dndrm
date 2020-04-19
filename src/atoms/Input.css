@@ -1,6 +1,5 @@
 .Input {
   background: none;
-  border: 0;
   border: 1px dotted var(--aqua);
   color: var(--fg);
   font-family: 'Lora', Georgia, serifs;
@@ -8,11 +7,24 @@
   padding: 0.2rem 0.5rem;
 }
 
+.Input.fluid {
+  width: 100%;
+}
+
 .Input:hover,
 .Input:focus {
   box-shadow: 0 0 5px var(--aqua);
   border-style: solid;
   outline: none;
+}
+
+.Input[readonly] {
+  border: 1px solid transparent;
+  border-bottom: 2px solid var(--aqua);
+}
+.Input[readonly]:hover,
+.Input[readonly]:focus {
+  border: 1px solid var(--aqua);
 }
 
 .Input::placeholder {
