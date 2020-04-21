@@ -14,20 +14,29 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "humps": "^2.0.1",
+    "knex": "^0.21.0",
     "nodemon": "^2.0.3",
-    "pg-promise": "^10.5.1",
+    "pg": "^8.0.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "react-tabs": "^3.1.0"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "node api/index.js",
     "dev": "react-scripts start",
+    "dev:api": "nodemon -w api api/index.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "db:seed": "knex seed:run",
+    "db:migrate": "knex migrate:latest",
+    "db:rollback": "knex migrate:rollback",
+    "mk:seed": "knex seed:make",
+    "mk:migration": "knex migrate:make"
   },
   "eslintConfig": {
     "extends": "react-app"

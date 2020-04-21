@@ -31,5 +31,3 @@ fi
 psql postgres -c 'CREATE DATABASE dndrm_test;'
 psql postgres -c 'GRANT ALL PRIVILEGES ON DATABASE "dndrm_test" to dndrm_user;'
 
-psql -f bin/schema.sql dndrm dndrm_user
-

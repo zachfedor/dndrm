@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
@@ -77,14 +77,16 @@ const reducer = (state, action) => {
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [party, setParty] = useState(0);
 
   useEffect(() => {
+    console.log(`fetching characters for party: ${party}`);
     fetch('/api/characters')
       .then(res => res.json())
       .then(data => {
         dispatch({ type: 'loadCharacters', characters: data.characters });
       });
-  });
+  }, [party]);
 
   return (
     <DispatchContext.Provider value={dispatch}>
@@ -118,6 +120,8 @@ const App = () => {
               <p>monsters panel</p>
             </TabPanel>
           </Tabs>
+
+          <button onClick={() => setParty(party + 1)}>set party test</button>
         </div>
       </StateContext.Provider>
     </DispatchContext.Provider>

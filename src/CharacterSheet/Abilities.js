@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 
 import { DispatchContext } from '../App';
-import { ABILITY_DESCRIPTIONS } from '../constants';
+import { ABILITIES } from '../constants';
 import { getAbilityModifier, getProficiencyBonus } from '../formulas';
 import { Button, Input, Table } from '../atoms';
 import './Abilities.css';
@@ -14,7 +14,12 @@ const Abilities = (props) => {
   const [abilities, setAbilities] = useState(props.abilities);
   const [currentlyEditing, setEditing] = useState();
 
-  const bonus = addSign(getProficiencyBonus(props.level));
+  const getSavingThrow = (ability) => {
+    const base = getAbilityModifier(abilities[ability]);
+    const bonus = props.savingThrows.includes(ability)
+      ? getProficiencyBonus(props.level) : 0;
+    return base + bonus;
+  };
 
   const onChange = (ability) => (event) => {
     setAbilities({
@@ -48,34 +53,37 @@ const Abilities = (props) => {
           </tr>
         </thead>
         <tbody>
-        {Object.keys(abilities).map(ability => (
-          <tr key={ability} className={props.savingthrows.includes(ability) ? 'proficiency' : ''}>
-            <td title={ABILITY_DESCRIPTIONS[ability]}>{ability}</td>
+        {ABILITIES.map(ability => (
+          <tr
+            key={ability.name}
+            className={props.savingThrows.includes(ability.name) ? 'proficiency' : ''}
+          >
+            <td title={ability.description}>{ability.name}</td>
             <td>
-              {currentlyEditing === ability ? (
-                <form onSubmit={onSubmit(ability)}>
+              {currentlyEditing === ability.name ? (
+                <form onSubmit={onSubmit(ability.name)}>
                   <Input
                     type="number"
                     min="1"
                     max="30"
                     autoFocus
-                    onChange={onChange(ability)}
-                    value={abilities[ability]}
+                    onChange={onChange(ability.name)}
+                    value={abilities[ability.name]}
                   />
                   <Button type="submit">Save</Button>
                 </form>
               ) : (
                 <Button
                   className="editable"
-                  onClick={() => setEditing(ability)}
+                  onClick={() => setEditing(ability.name)}
                   title="Edit Ability"
                 >
-                  {abilities[ability]}
+                  {abilities[ability.name]}
                 </Button>
               )}
             </td>
-            <td>{addSign(getAbilityModifier(abilities[ability]))}</td>
-            <td>{props.savingthrows.includes(ability) && bonus}</td>
+            <td>{addSign(getAbilityModifier(abilities[ability.name]))}</td>
+            <td>{addSign(getSavingThrow(ability.name))}</td>
           </tr>
         ))}
         </tbody>

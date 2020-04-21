@@ -1,20 +1,11 @@
 export const ABILITIES = [
-  'strength',
-  'dexterity',
-  'constitution',
-  'intelligence',
-  'wisdom',
-  'charisma',
+  { name: 'strength', description: 'Natural athleticism, bodily power' },
+  { name: 'dexterity', description: 'Physical agility, reflexes, balance, poise' },
+  { name: 'constitution', description: 'Health, stamina, vital force' },
+  { name: 'intelligence', description: 'Mental acuity, information recall, analytical skill' },
+  { name: 'wisdom', description: 'Awareness, intuition, insight' },
+  { name: 'charisma', description: 'Confidence, eloquence, leadership' },
 ];
-
-export const ABILITY_DESCRIPTIONS = {
-  strength: 'Natural athleticism, bodily power',
-  dexterity: 'Physical agility, reflexes, balance, poise',
-  constitution: 'Health, stamina, vital force',
-  intelligence: 'Mental acuity, information recall, analytical skill',
-  wisdom: 'Awareness, intuition, insight',
-  charisma: 'Confidence, eloquence, leadership',
-};
 
 export const SKILLS = [
   { name: 'acrobatics', ability: 'dexterity' },
@@ -36,6 +27,4 @@ export const SKILLS = [
   { name: 'stealth', ability: 'dexterity' },
   { name: 'survival', ability: 'wisdom' },
 ];
-
-export const SKILL_ARRAY = SKILLS.map(skill => skill.name);
 

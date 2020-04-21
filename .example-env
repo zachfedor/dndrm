@@ -1,0 +1,5 @@
+NODE_ENV = development
+PORT = 3030
+SECRET = secret
+DB_CLIENT = pg
+DATABASE_URL = postgres://user:pass@localhost:port/db_name
