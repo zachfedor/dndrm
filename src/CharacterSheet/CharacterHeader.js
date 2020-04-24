@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LabeledInput } from '../atoms';
+import { LabeledInput } from '../molecules';
 import './CharacterHeader.css';
 
 const CharacterHeader = ({ character }) => {

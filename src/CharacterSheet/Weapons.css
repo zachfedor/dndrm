@@ -16,3 +16,7 @@
 .Weapons tr.proficiency td {
 }
 
+.Weapons .MarkdownEditor {
+  margin-top: 2rem;
+}
+

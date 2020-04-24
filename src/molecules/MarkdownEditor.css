@@ -1,0 +1,66 @@
+.MarkdownEditor {
+  border: 1px solid var(--gray-light);
+  padding: 1rem;
+}
+
+.MarkdownEditor_form {
+  display: flex;
+  flex-direction: column;
+}
+
+.MarkdownEditor_form textarea {
+  background: none;
+  border: 1px dotted var(--aqua);
+  color: var(--fg);
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1rem;
+  padding: 1rem;
+  resize: vertical;
+}
+
+.MarkdownEditor_form textarea:hover,
+.MarkdownEditor_form textarea:focus {
+  box-shadow: 0 0 5px var(--aqua);
+  border-style: solid;
+  outline: none;
+}
+
+.MarkdownEditor_form div {
+  align-items: baseline;
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 1rem;
+}
+
+.MarkdownEditor_form div span.help {
+  color: var(--gray);
+  margin-right: 1rem;
+  flex-grow: 1;
+}
+
+.MarkdownEditor .Button {
+  margin-left: 1rem;
+}
+
+.MarkdownEditor_preview {
+  display: flex;
+  flex-direction: column;
+}
+
+.MarkdownEditor_preview .Button {
+  align-self: flex-end;
+  margin-top: 0.5rem;
+}
+
+.MarkdownEditor_preview div,
+.MarkdownEditor_preview ul,
+.MarkdownEditor_preview ol,
+.MarkdownEditor_preview blockquote,
+.MarkdownEditor_preview p {
+  margin: 0 0 0.5rem;
+}
+.MarkdownEditor_preview ul,
+.MarkdownEditor_preview ol,
+.MarkdownEditor_preview blockquote {
+  padding-left: 1.5rem;
+}

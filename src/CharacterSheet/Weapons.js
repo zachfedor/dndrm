@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
+import { DispatchContext } from '../App';
 import { Table } from '../atoms';
 import { WEAPONS } from '../constants';
 import { getWeaponAttack, getWeaponDamage } from '../formulas';
+import { MarkdownEditor } from '../molecules';
 import { addSign } from '../utils';
 import './Weapons.css';
 
 
 const Weapons = ({ character }) => {
+  const dispatch = useContext(DispatchContext);
+  const updateWeaponNotes = (weaponNotes) => dispatch({
+    type: 'updateWeaponNotes',
+    id: character.id,
+    weaponNotes,
+  });
+
   return (
     <section className="Weapons">
       <h3>Weapons</h3>
@@ -37,6 +46,8 @@ const Weapons = ({ character }) => {
           ))}
         </tbody>
       </Table>
+
+      <MarkdownEditor content={character.weaponNotes} handleSubmit={updateWeaponNotes} />
     </section>
   )
 };

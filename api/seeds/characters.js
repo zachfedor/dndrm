@@ -39,7 +39,7 @@ exports.seed = function(knex) {
             proficiency: true,
           },
         }),
-        'weapon_notes': "- *Longbow*: has a normal range of 150 feet, or up to 600 feet with _disadvantage_ on the attach roll.",
+        'weapon_notes': "- **Longbow**: has a normal range of 150 feet, or up to 600 feet with _disadvantage_ on the attack roll.",
       }, {
         name: 'Taako',
         race: 'Elf',
@@ -71,7 +71,7 @@ exports.seed = function(knex) {
             proficiency: true,
           },
         }),
-        'weapon_notes': "*Proficiencies*: Daggers, darts, light crossbows, long and short bows, long and short swords, quarterstaffs, and slings\n\n*Other*: some other note...",
+        'weapon_notes': "**Proficiencies**: Daggers, darts, light crossbows, long and short bows, long and short swords, quarterstaffs, and slings\n\n**Other**: some other note...",
       }]);
     });
 };

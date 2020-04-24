@@ -2,7 +2,7 @@
   background: none;
   border: 1px dotted var(--aqua);
   color: var(--fg);
-  font-family: 'Lora', Georgia, serifs;
+  font-family: 'Lora', Georgia, serif;
   font-size: 1rem;
   padding: 0.2rem 0.5rem;
 }

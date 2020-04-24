@@ -54,6 +54,17 @@ const reducer = (state, action) => {
           }
         }
       };
+    case 'updateWeaponNotes':
+      return {
+        ...state,
+        characters: {
+          ...state.characters,
+          [action.id]: {
+            ...state.characters[action.id],
+            weaponNotes: action.weaponNotes,
+          },
+        },
+      };
     case 'toggleSpellSlot':
       const { characterID, level, slot } = action;
       const character = state.characters[characterID];
