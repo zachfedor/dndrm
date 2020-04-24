@@ -1,13 +1,12 @@
 import React, { useState, useContext } from 'react';
 
 import { DispatchContext } from '../App';
+import { Button, Input, Table } from '../atoms';
 import { ABILITIES } from '../constants';
 import { getAbilityModifier, getSaveModifier } from '../formulas';
-import { Button, Input, Table } from '../atoms';
+import { addSign } from '../utils';
 import './Abilities.css';
 
-
-const addSign = num => num < 0 ? `${num}` : `+${num}`;
 
 const Abilities = (props) => {
   const { character } = props;

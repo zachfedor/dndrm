@@ -2,7 +2,7 @@
  * Formulas for most D&D stat calculations
  * @module
  */
-import { SKILLS } from './constants';
+import { SKILLS, WEAPONS } from './constants';
 
 /**
  * Calculate dice roll modifier from an ability score
@@ -125,19 +125,30 @@ export const getHitPointStatus = (character) => {
 
 
 /**
- * Get weapon attack bonus from character object
+ * Get attack bonus from character object for a given weapon
  *
  * @param {object} character - The entire character object
  * @param {string} weapon - The weapon in question
- * @returns {object}
+ * @returns {number}
  */
-export const getWeaponStats = (character, weapon) => {
-  // determine ability governing weapon: strength or dexterity
-  // getAbilityModifier(ability)
-  // determine proficiency with weapon
-  return {
-    // attackBonus: modifier + bonus,
-    // damageDie: weapon.damageDie + modifier,
-  };
+export const getWeaponAttack = (character, weapon) => {
+  const { ability, proficiency } = character.weapons[weapon];
+  const modifier = getAbilityModifier(character, ability);
+  return proficiency ? modifier + getProficiencyBonus(character) : modifier;
+};
+
+
+/**
+ * Get damage die and modifier from character object for a given weapon
+ *
+ * @param {object} character - The entire character object
+ * @param {string} weapon - The weapon in question
+ * @returns {string}
+ */
+export const getWeaponDamage = (character, weapon) => {
+  const ability = character.weapons[weapon].ability;
+  const modifier = getAbilityModifier(character, ability);
+  const signedMod = modifier < 0 ? `- ${Math.abs(modifier)}` : `+ ${modifier}`;
+  return `${WEAPONS[weapon].damageDie} ${signedMod}`;
 };
 

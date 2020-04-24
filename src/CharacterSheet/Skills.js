@@ -4,9 +4,9 @@ import { DispatchContext } from '../App';
 import { Button, Input, Table } from '../atoms';
 import { SKILLS } from '../constants';
 import { getSkillModifier } from '../formulas';
+import { addSign } from '../utils';
 import './Skills.css';
 
-const addSign = num => num < 0 ? `${num}` : `+${num}`;
 
 const Skills = ({ character }) => {
   const dispatch = useContext(DispatchContext);

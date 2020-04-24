@@ -29,6 +29,17 @@ exports.seed = function(knex) {
           successes: 0,
           failures: 0,
         }),
+        weapons: JSON.stringify({
+          greatsword: {
+            ability: 'strength',
+            proficiency: true,
+          },
+          longbow: {
+            ability: 'dexterity',
+            proficiency: true,
+          },
+        }),
+        'weapon_notes': "- *Longbow*: has a normal range of 150 feet, or up to 600 feet with _disadvantage_ on the attach roll.",
       }, {
         name: 'Taako',
         race: 'Elf',
@@ -54,6 +65,13 @@ exports.seed = function(knex) {
           successes: 0,
           failures: 0,
         }),
+        weapons: JSON.stringify({
+          shortsword: {
+            ability: 'dexterity',
+            proficiency: true,
+          },
+        }),
+        'weapon_notes': "*Proficiencies*: Daggers, darts, light crossbows, long and short bows, long and short swords, quarterstaffs, and slings\n\n*Other*: some other note...",
       }]);
     });
 };

@@ -1,0 +1,18 @@
+.Weapons {
+  margin-top: 2rem;
+}
+
+.Weapons h3 {
+  color: var(--blue);
+  font-style: italic;
+  margin: 0;
+}
+
+.Weapons td,
+.Weapons th {
+  text-transform: capitalize;
+}
+
+.Weapons tr.proficiency td {
+}
+
