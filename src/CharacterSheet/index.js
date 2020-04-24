@@ -5,15 +5,13 @@ import Abilities from './Abilities';
 import Skills from './Skills';
 import './index.css';
 
-const CharacterSheet = (props) => {
-  const { character } = props;
-
+const CharacterSheet = ({ character }) => {
   return (
     <article className="CharacterSheet">
-      <CharacterHeader {...character} />
+      <CharacterHeader character={character} />
 
-      <Abilities {...character} />
-      <Skills {...character} />
+      <Abilities character={character} />
+      <Skills character={character} />
     </article>
   );
 };

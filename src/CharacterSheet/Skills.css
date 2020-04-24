@@ -18,9 +18,9 @@
   font-weight: bold;
 }
 
-.Skills td.ability {
-  color: var(--gray);
-  text-align: center;
+.Skills td .ability {
+  margin-left: 0.5rem;
+  opacity: 0.5;
 }
 
 .Skills form {

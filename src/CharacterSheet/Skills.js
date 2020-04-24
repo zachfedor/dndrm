@@ -3,27 +3,14 @@ import React, { useContext, useState } from 'react';
 import { DispatchContext } from '../App';
 import { Button, Input, Table } from '../atoms';
 import { SKILLS } from '../constants';
-import { getAbilityModifier, getProficiencyBonus } from '../formulas';
+import { getSkillModifier } from '../formulas';
 import './Skills.css';
 
 const addSign = num => num < 0 ? `${num}` : `+${num}`;
 
-const Skills = (props) => {
+const Skills = ({ character }) => {
   const dispatch = useContext(DispatchContext);
   const [skillInput, setSkillInput] = useState('');
-
-  const characterSkills = SKILLS.map(skill => {
-    const isProficient = props.proficiencies.includes(skill.name);
-    const base = getAbilityModifier(props.abilities[skill.ability]);
-    const bonus = isProficient ? getProficiencyBonus(props.level) : 0;
-    const modifier = addSign(base + bonus);
-
-    return {
-      ...skill,
-      isProficient,
-      modifier,
-    };
-  });
 
   const onChange = (event) => setSkillInput(event.target.value);
   const onSubmit = (event) => {
@@ -31,14 +18,14 @@ const Skills = (props) => {
     const input = skillInput.toLowerCase();
 
     if (SKILLS.filter(s => s.name === input).length) {
-      const proficiencies = props.proficiencies.includes(input)
-        ? props.proficiencies.filter(skill => skill !== input)
-        : [ ...props.proficiencies, input ];
+      const newProficiencies = character.proficiencies.includes(input)
+        ? character.proficiencies.filter(skill => skill !== input)
+        : [ ...character.proficiencies, input ];
 
       dispatch({
         type: 'updateProficiencies',
-        id: props.id,
-        proficiencies,
+        id: character.id,
+        proficiencies: newProficiencies,
       });
     }
     setSkillInput('');
@@ -52,21 +39,21 @@ const Skills = (props) => {
         <thead>
           <tr>
             <th></th>
-            <th>Ability</th>
             <th>Mod</th>
           </tr>
         </thead>
         <tbody>
-          {characterSkills.map(skill => (
-            <tr key={skill.name} className={skill.isProficient ? 'proficiency' : ''}>
+          {SKILLS.map(({ name, ability }) => (
+            <tr
+              key={name}
+              className={character.proficiencies.includes(name) ? 'proficiency' : ''}
+            >
               <td className="skill">
-                {skill.name}
-              </td>
-              <td className="ability">
-                {skill.ability.substr(0,3)}
+                {name}
+                <span className="ability">({ability.substr(0,3)})</span>
               </td>
               <td className="modifier">
-                {skill.modifier}
+                {addSign(getSkillModifier(character, name))}
               </td>
             </tr>
           ))}
