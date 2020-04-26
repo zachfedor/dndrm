@@ -9,6 +9,7 @@
 }
 .Button:hover,
 .Button:focus {
+  border: 1px solid var(--aqua);
   box-shadow: 0 0 5px var(--aqua);
   color: var(--aqua-dark);
   outline: none;
@@ -23,4 +24,8 @@
 .Button.editable:focus {
   border-style: solid;
   color: var(--fg);
+}
+
+a.Button {
+  text-decoration: none;
 }

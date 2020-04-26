@@ -2,13 +2,47 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: baseline;
   margin: 0;
 }
 
 .CharacterSheet > header nav {
   margin: 0;
+  display: flex;
+  flex-direction: row;
 }
 
 .CharacterSheet > header nav a {
+  border-color: var(--gray-light);
+  color: var(--gray);
+  display: block;
   margin-left: 1rem;
+}
+
+.CharacterSheet article {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.CharacterSheet article .CharacterHeader {
+  width: 100%;
+}
+
+.CharacterSheet article .column + .column {
+  margin-top: 2rem;
+  width: 60%;
+}
+
+.CharacterSheet .react-tabs__tab {
+  color: var(--gray);
+  font-size: 1.17rem;
+  font-style: italic;
+  font-weight: bold;
+  margin: 0;
+}
+
+.CharacterSheet .react-tabs__tab--selected {
+  color: var(--blue);
 }

@@ -3,9 +3,8 @@
 }
 
 .Weapons h3 {
-  color: var(--blue);
-  font-style: italic;
-  margin: 0;
+  position: absolute;
+  left: -9999px;
 }
 
 .Weapons td,

@@ -42,46 +42,52 @@ const CharacterSheet = () => {
       <header>
         <h1>Character Sheet</h1>
         <nav>
-          <Link to={`/players/${prev}`}>Prev</Link>
-          <Link to={`/players/${next}`}>Next</Link>
+          <Link to={`/players/${prev}`} className="Button">Prev</Link>
+          <Link to={`/players/${next}`} className="Button">Next</Link>
         </nav>
       </header>
 
       <article>
         <CharacterHeader character={character} />
 
-        <Abilities character={character} />
-        <Skills character={character} />
+        <div className="column">
+          <Abilities character={character} />
+          <Skills character={character} />
+        </div>
 
-        <Tabs>
-          <TabList>
-            <Tab>Weapons</Tab>
-            <Tab>Spells</Tab>
-            <Tab>Features</Tab>
-            <Tab>Equipment</Tab>
-            <Tab>Details</Tab>
-          </TabList>
+        <div className="column">
+          {/* HP component */}
 
-          <TabPanel>
-            <Weapons character={character} />
-          </TabPanel>
+          <Tabs>
+            <TabList>
+              <Tab>Weapons</Tab>
+              <Tab>Spells</Tab>
+              <Tab>Features</Tab>
+              <Tab>Equipment</Tab>
+              <Tab>Details</Tab>
+            </TabList>
 
-          <TabPanel>
-            <p>Spells panel</p>
-          </TabPanel>
+            <TabPanel>
+              <Weapons character={character} />
+            </TabPanel>
 
-          <TabPanel>
-            <p>Features panel</p>
-          </TabPanel>
+            <TabPanel>
+              <p>Spells panel</p>
+            </TabPanel>
 
-          <TabPanel>
-            <p>Equipment panel</p>
-          </TabPanel>
+            <TabPanel>
+              <p>Features panel</p>
+            </TabPanel>
 
-          <TabPanel>
-            <p>Details panel</p>
-          </TabPanel>
-        </Tabs>
+            <TabPanel>
+              <p>Equipment panel</p>
+            </TabPanel>
+
+            <TabPanel>
+              <p>Details panel</p>
+            </TabPanel>
+          </Tabs>
+        </div>
       </article>
     </main>
   );

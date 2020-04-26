@@ -1,5 +1,6 @@
 .Table {
   border-collapse: collapse;
+  width: 100%;
 }
 
 .Table td,
