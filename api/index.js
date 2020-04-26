@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, '..', 'build')));
 app.use(require('./routes'));
 
 // Serve the React client
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, '..', 'build', 'index.html')));
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, '..', 'build', 'index.html')));
 
 app.listen(config.port, () => console.log(`Express app listening at http://localhost:${config.port}`));
 
