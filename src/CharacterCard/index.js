@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { DispatchContext } from '../App';
+import { ABILITIES } from '../constants';
 import {
   getAbilityModifier,
   getHitPointStatus,
-  getPassiveSkillScore,
   getProficiencyBonus,
 } from '../formulas';
 import SpellSlots from './SpellSlots';
@@ -39,43 +39,27 @@ const CharacterCard = ({ character }) => {
       </header>
 
       <StatList>
-        {Object.keys(character.abilities).map(name => (
+        {ABILITIES.map(({ name, description }) => (
           <Stat
             key={name}
-            label={name.substr(0,3)}
+            label={name}
             value={getAbilityModifier(character, name)}
             sign={true}
-            tooltip={`Ability Score: ${name}`}
+            tooltip={description}
           />
         ))}
-        <Stat label="Insp"
-          value={0}
-          tooltip="Inspiration Points"
-        />
-        <Stat label="Prof"
+        <Stat label="Proficiency"
           value={getProficiencyBonus(character)}
           sign={true}
-          tooltip="Proficiency Bonus"
         />
-        <Stat label="AC"
+        <Stat label="Armor Class"
           value={12}
-          tooltip="Armor Class"
-        />
-        <Stat label="Spd"
-          value={30}
-          unit="ft"
-          tooltip="Base Speed"
-        />
-        <Stat label="Init"
-          value={getAbilityModifier(character, 'dexterity')}
-          sign={true}
-          tooltip="Initiative Bonus"
-        />
-        <Stat label="Perc"
-          value={getPassiveSkillScore(character, 'perception')}
-          tooltip="Passive Perception"
         />
       </StatList>
+
+      <p>
+        Skills: {character.proficiencies.join(', ')}
+      </p>
 
       {character.spellSlots && (
         <SpellSlots slots={character.spellSlots} toggleSpellSlot={toggleSpellSlot} />

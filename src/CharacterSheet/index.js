@@ -6,6 +6,7 @@ import 'react-tabs/style/react-tabs.css';
 import { StateContext } from '../App';
 import CharacterHeader from './CharacterHeader';
 import Abilities from './Abilities';
+import HitPoints from './HitPoints';
 import Skills from './Skills';
 import Weapons from './Weapons';
 import './index.css';
@@ -56,7 +57,7 @@ const CharacterSheet = () => {
         </div>
 
         <div className="column">
-          {/* HP component */}
+          <HitPoints character={character} />
 
           <Tabs>
             <TabList>
@@ -72,19 +73,34 @@ const CharacterSheet = () => {
             </TabPanel>
 
             <TabPanel>
-              <p>Spells panel</p>
+              <section>
+                <p>Spellcasting Ability: </p>
+                <p>Spell Save DC: 8 + Proficiency + Ability</p>
+                <p>Spell Attack Bonus: Proficiency + Ability</p>
+                <p>Spell Slots</p>
+                <p>Spell List and Notes</p>
+              </section>
             </TabPanel>
 
             <TabPanel>
-              <p>Features panel</p>
+              <section>
+                <p>Notes for Features, Traits, Feats, etc.</p>
+              </section>
             </TabPanel>
 
             <TabPanel>
-              <p>Equipment panel</p>
+              <section>
+                <p>Copper, Silver, Gold</p>
+                <p>Notes for Equipment</p>
+              </section>
             </TabPanel>
 
             <TabPanel>
-              <p>Details panel</p>
+              <section>
+                <p>Background and Alignment</p>
+                <p>Languages</p>
+                <p>Personality, Ideals, Bonds, Flaws</p>
+              </section>
             </TabPanel>
           </Tabs>
         </div>

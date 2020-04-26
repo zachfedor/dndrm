@@ -1,0 +1,10 @@
+.CheckCircleArray {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.CheckCircleArray .CheckCircle {
+  margin-left: 1rem;
+}
+

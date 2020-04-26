@@ -120,7 +120,7 @@ const App = () => {
 
                     <ul>
                       {Object.keys(state.characters).map(id => (
-                        <li>
+                        <li key={id}>
                           <NavLink to={`/players/${id}`} activeClassName="selected">{state.characters[id].name}</NavLink>
                         </li>
                       ))}

@@ -5,6 +5,17 @@
   justify-content: center;
   position: relative;
   width: 1rem;
+  --primary-color: var(--orange-dark);
+}
+
+.CheckCircle.green {
+  --primary-color: var(--green);
+}
+.CheckCircle.red {
+  --primary-color: var(--red);
+}
+.CheckCircle.purple {
+  --primary-color: var(--purple);
 }
 
 .CheckCircle input {
@@ -28,15 +39,15 @@
 }
 
 .CheckCircle.checked div {
-  background-color: var(--orange-dark);
-  border-color: var(--orange-dark);
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
 .CheckCircle div:focus,
 .CheckCircle div:hover,
 .CheckCircle input:focus + div,
 .CheckCircle input:hover + div {
-  border-color: var(--orange-dark);
+  border-color: var(--primary-color);
   box-shadow: 0 0 5px var(--gray);
   outline: none;
 }

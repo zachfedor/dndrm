@@ -4,11 +4,11 @@ import { cx } from '../utils';
 import './CheckCircle.css';
 
 
-const CheckCircle = ({ checked, handleClick, ...props }) => {
+const CheckCircle = ({ checked, color, handleClick, ...props }) => {
   const onClick = () => handleClick(!checked);
 
   return (
-    <div className={cx('CheckCircle', checked && 'checked')}>
+    <div className={cx('CheckCircle', checked && 'checked', color)}>
       <input
         {...props}
         type="checkbox"

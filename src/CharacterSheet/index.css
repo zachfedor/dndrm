@@ -31,8 +31,11 @@
 }
 
 .CharacterSheet article .column + .column {
-  margin-top: 2rem;
   width: 60%;
+}
+
+.CharacterSheet .react-tabs {
+  margin-top: 3rem;
 }
 
 .CharacterSheet .react-tabs__tab {

@@ -1,0 +1,58 @@
+.HitPoints {
+  margin-top: 2rem;
+}
+
+.HitPoints h3 {
+  color: var(--blue);
+  font-style: italic;
+  margin: 0;
+}
+
+.HitPoints div.row {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.HitPoints .Table {
+  width: auto;
+}
+
+.HitPoints .Table tr:last-of-type td {
+  border: none;
+}
+
+.HitPoints .Table tr td,
+.HitPoints .Table tr th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.HitPoints .Table .current {
+  font-size: 2rem;
+}
+
+.HitPoints .Table .temporary {
+  color: var(--blue);
+}
+
+.HitPoints-death .CheckCircleArray {
+  justify-content: flex-end;
+}
+
+.HitPoints-change,
+.HitPoints-dice {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.HitPoints-change .Button,
+.HitPoints-change .Input,
+.HitPoints-dice .Input,
+.HitPoints-dice .Input + label {
+  margin-left: 1rem; 
+}
+
