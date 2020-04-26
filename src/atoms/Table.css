@@ -4,11 +4,16 @@
 
 .Table td,
 .Table th {
-  padding: 0.2rem 0.5rem;
+  padding: 0.5rem 0.8rem;
   text-align: center;
+  border-bottom: 1px solid var(--gray-light);
 }
 
 .Table td:first-of-type,
 .Table th:first-of-type {
   text-align: left;
+}
+
+.Table tr:last-of-type {
+  border-bottom: none;
 }

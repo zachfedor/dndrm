@@ -1,0 +1,48 @@
+.CheckCircle {
+  align-items: center;
+  display: flex;
+  height: 1rem;
+  justify-content: center;
+  position: relative;
+  width: 1rem;
+}
+
+.CheckCircle input {
+  cursor: pointer;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+}
+
+.CheckCircle div {
+  background-clip: content-box;
+  background-color: transparent;
+  border: 1px solid var(--gray-light);
+  border-radius: 50%;
+  cursor: pointer;
+  height: 1rem;
+  padding: 2px;
+  width: 1rem;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.CheckCircle.checked div {
+  background-color: var(--orange-dark);
+  border-color: var(--orange-dark);
+}
+
+.CheckCircle div:focus,
+.CheckCircle div:hover,
+.CheckCircle input:focus + div,
+.CheckCircle input:hover + div {
+  border-color: var(--orange-dark);
+  box-shadow: 0 0 5px var(--gray);
+  outline: none;
+}
+
+.CheckCircle div:active,
+.CheckCircle input:active + div {
+  box-shadow: 0 0 1px var(--gray);
+}
+

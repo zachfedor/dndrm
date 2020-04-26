@@ -1,0 +1,10 @@
+.LabeledCheckCircle {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+}
+
+.LabeledCheckCircle span {
+  margin-left: 0.5rem;
+}
+

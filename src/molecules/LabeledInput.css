@@ -5,7 +5,8 @@
 
 .LabeledInput label {
   color: var(--aqua);
+  font-size: 0.8rem;
   font-style: italic;
-  padding: 0.2rem 0.5rem;
+  padding: 0.1rem 0.5rem;
   text-transform: capitalize;
 }

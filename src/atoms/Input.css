@@ -20,7 +20,7 @@
 
 .Input[readonly] {
   border: 1px solid transparent;
-  border-bottom: 2px solid var(--aqua);
+  border-bottom: 1px solid var(--aqua);
 }
 .Input[readonly]:hover,
 .Input[readonly]:focus {

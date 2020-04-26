@@ -4,6 +4,7 @@ import 'react-tabs/style/react-tabs.css';
 
 import OverviewPanel from './OverviewPanel';
 import PlayersPanel from './PlayersPanel';
+import { LabeledCheckCircle } from './molecules';
 import './App.css';
 
 
@@ -125,6 +126,8 @@ const App = () => {
 
             <TabPanel>
               <p>npcs panel</p>
+
+              <LabeledCheckCircle id="test" label="Test" handleClick={(v) => console.log('clicked', v)} />
             </TabPanel>
 
             <TabPanel>

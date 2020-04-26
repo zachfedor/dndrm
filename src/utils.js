@@ -17,4 +17,4 @@ export const cx = (...classes) => classes.filter(cls => cls).join(' ');
  * @param {number} n - A positive or negative number
  * @return {string} - Either '+n' or '-n';
  */
-export const addSign = n => n < 0 ? `${n}` : `+${n}`;
+export const addSign = n => n > 0 ? `+${n}` : `${n}`;

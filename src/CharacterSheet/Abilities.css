@@ -13,9 +13,8 @@
   text-transform: capitalize;
 }
 
-.Abilities tr.proficiency td {
+.Abilities tr.proficiency td:last-of-type {
   color: var(--orange-dark);
-  font-weight: bold;
 }
 
 .Abilities td input {

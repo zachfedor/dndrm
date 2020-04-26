@@ -4,6 +4,7 @@ import { DispatchContext } from '../App';
 import { Button, Input, Table } from '../atoms';
 import { ABILITIES } from '../constants';
 import { getAbilityModifier, getSaveModifier } from '../formulas';
+import { LabeledCheckCircle } from '../molecules';
 import { addSign } from '../utils';
 import './Abilities.css';
 
@@ -52,7 +53,14 @@ const Abilities = (props) => {
             key={name}
             className={character.savingThrows.includes(name) ? 'proficiency' : ''}
           >
-            <td title={description}>{name}</td>
+            <td title={description}>
+              <LabeledCheckCircle
+                id={name}
+                checked={character.savingThrows.includes(name)}
+                label={name}
+                handleClick={(v) => console.log('clicked', name, v)}
+              />
+            </td>
             <td>
               {currentlyEditing === name ? (
                 <form onSubmit={onSubmit(name)}>
