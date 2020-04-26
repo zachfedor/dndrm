@@ -1,10 +1,13 @@
 import React, { useEffect, useReducer, useState } from 'react';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
+import {
+  BrowserRouter as Router,
+  NavLink,
+  Route,
+  Switch,
+} from 'react-router-dom';
 
+import CharacterSheet from './CharacterSheet';
 import OverviewPanel from './OverviewPanel';
-import PlayersPanel from './PlayersPanel';
-import { LabeledCheckCircle } from './molecules';
 import './App.css';
 
 
@@ -87,9 +90,11 @@ const reducer = (state, action) => {
   }
 };
 
+
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [party, setParty] = useState(0);
+  console.log(setParty);
 
   useEffect(() => {
     console.log(`fetching characters for party: ${party}`);
@@ -103,40 +108,66 @@ const App = () => {
   return (
     <DispatchContext.Provider value={dispatch}>
       <StateContext.Provider value={state}>
-        <div className="App">
-          <header className="App-header">
-            <h1>D<span>&amp;</span>DRM</h1>
-          </header>
+        <Router>
+          <div className="App">
+            <header className="App-header">
+              <h1>D<span>&amp;</span>DRM</h1>
 
-          <Tabs>
-            <TabList>
-              <Tab>Overview</Tab>
-              <Tab>Players</Tab>
-              <Tab>NPCs</Tab>
-              <Tab>Monsters</Tab>
-            </TabList>
+              <nav>
+                <ul>
+                  <li>
+                    <NavLink to="/" exact={true} activeClassName="selected">Players</NavLink>
 
-            <TabPanel>
-              <OverviewPanel />
-            </TabPanel>
+                    <ul>
+                      {Object.keys(state.characters).map(id => (
+                        <li>
+                          <NavLink to={`/players/${id}`} activeClassName="selected">{state.characters[id].name}</NavLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                  <li>
+                    <NavLink to="/npcs" activeClassName="selected">NPCs</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/monsters" activeClassName="selected">Monsters</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/spells" activeClassName="selected">Spells</NavLink>
+                  </li>
+                </ul>
+              </nav>
+            </header>
 
-            <TabPanel>
-              <PlayersPanel />
-            </TabPanel>
+            <Switch>
+              <Route path="/players/:id">
+                <CharacterSheet />
+              </Route>
 
-            <TabPanel>
-              <p>npcs panel</p>
+              <Route path="/npcs">
+                <main>
+                  <em>NPCs page: work in progress</em>
+                </main>
+              </Route>
 
-              <LabeledCheckCircle id="test" label="Test" handleClick={(v) => console.log('clicked', v)} />
-            </TabPanel>
+              <Route path="/monsters">
+                <main>
+                  <em>Monsters page: work in progress</em>
+                </main>
+              </Route>
 
-            <TabPanel>
-              <p>monsters panel</p>
-            </TabPanel>
-          </Tabs>
+              <Route path="/spells">
+                <main>
+                  <em>Spells page: work in progress</em>
+                </main>
+              </Route>
 
-          <button onClick={() => setParty(party + 1)}>set party test</button>
-        </div>
+              <Route path="/">
+                <OverviewPanel />
+              </Route>
+            </Switch>
+          </div>
+        </Router>
       </StateContext.Provider>
     </DispatchContext.Provider>
   );

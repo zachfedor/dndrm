@@ -1,3 +1,14 @@
-.CharacterSheet {
-  
+.CharacterSheet > header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.CharacterSheet > header nav {
+  margin: 0;
+}
+
+.CharacterSheet > header nav a {
+  margin-left: 1rem;
 }

@@ -1,17 +1,95 @@
 .App {
+  display: flex;
+  min-height: 100vh;
 }
 
-.App h1 {
-  color: var(--orange-dark);
+.App-header {
+  align-items: center;
+  background: var(--fg);
+  box-shadow: 0 0 5px var(--gray);
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+}
+
+.App-header h1 {
+  color: var(--orange);
   font-style: italic;
+  margin: 0;
 }
 
-.App h1 span {
+.App-header h1 span {
   display: inline-block;
   font-size: 1.6rem;
   transform: translate(1px, 2px) rotate(-10deg);
 }
 
+.App-header nav {
+  margin: 2rem 0 0;
+}
+
+.App-header nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.App-header nav ul ul {
+  padding-left: 1rem;
+}
+
+.App-header nav a {
+  color: var(--bg);
+  display: block;
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 1px;
+  padding: 0.5rem;
+  position: relative;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.App-header nav a::after {
+  background: var(--blue);
+  bottom: 0;
+  content: '';
+  height: 1px;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transform: translateY(5px);
+  transition: opacity 0.3s, transform 0.3s;
+  width: 100%;
+}
+.App-header nav a.selected,
+.App-header nav a:focus,
+.App-header nav a:hover {
+  color: var(--gray);
+  outline: none;
+}
+.App-header nav a:focus::after,
+.App-header nav a:hover::after {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.App main {
+  flex-grow: 1;
+  padding: 3rem;
+}
+
+.App main h1 {
+  color: var(--gray-light);
+  margin: 0;
+}
+
+
+
+/**
+ * REACT TABS
+ */
 .react-tabs__tab-list {
   border-bottom: 1px solid var(--gray-light);
   text-align: left;

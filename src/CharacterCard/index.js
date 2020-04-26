@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 import { DispatchContext } from '../App';
 import {
@@ -25,7 +26,9 @@ const CharacterCard = ({ character }) => {
   return (
     <article className="CharacterCard">
       <header>
-        <h2>{character.name}</h2>  
+        <h2>
+          <Link to={`/players/${character.id}`}>{character.name}</Link>
+        </h2>
 
         <p>{character.race} {character.class}</p>
 

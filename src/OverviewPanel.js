@@ -8,6 +8,8 @@ const OverviewPanel = () => {
 
   return (
     <main>
+      <h1>Overview</h1>
+
       {Object.keys(characters).map(id => (
         <CharacterCard key={id} character={characters[id]} />
       ))}

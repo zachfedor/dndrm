@@ -15,6 +15,41 @@
   text-align: left;
 }
 
+.CharacterCard header h2 a {
+  color: var(--fg);
+  display: block;
+  padding: 0.2rem;
+  position: relative;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.CharacterCard header h2 a::after {
+  background: var(--blue);
+  bottom: 0;
+  content: '';
+  height: 1px;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transform: translateY(5px);
+  transition: opacity 0.3s, transform 0.3s;
+  width: 100%;
+}
+
+.CharacterCard header h2 a:focus,
+.CharacterCard header h2 a:hover {
+  color: var(--blue);
+  outline: none;
+}
+
+.CharacterCard header h2 a:focus::after,
+.CharacterCard header h2 a:hover::after {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
 .CharacterCard header p {
   margin: 0 auto 0 1rem;
   color: var(--orange-dark);
