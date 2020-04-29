@@ -1,3 +1,11 @@
+import io from 'socket.io-client';
+
+/**
+ * Socket.io Connection
+ */
+export const socket = io('localhost:3030');
+
+
 /**
  * Concatenate class names
  *

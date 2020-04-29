@@ -8,6 +8,7 @@ import {
 
 import CharacterSheet from './CharacterSheet';
 import OverviewPanel from './OverviewPanel';
+import { socket } from './utils';
 import './App.css';
 
 
@@ -26,7 +27,17 @@ const initialState = {
   characters: {}
 };
 
+const LOCAL_ACTIONS = [
+  'loadCharacters',
+];
+
 const reducer = (state, action) => {
+  if (!LOCAL_ACTIONS.includes(action.type) && !action.fromServer) {
+    // send action to the other clients for real time updates if it originated 
+    // on this client and this is NOT in the list of local-only actions
+    socket.emit('dispatch', action);
+  }
+
   switch (action.type) {
     case 'loadCharacters':
       return {
@@ -34,6 +45,7 @@ const reducer = (state, action) => {
         characters: action.characters,
       };
     case 'changeAbilityScore':
+
       return {
         ...state,
         characters: {
@@ -93,16 +105,22 @@ const reducer = (state, action) => {
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [party, setParty] = useState(0);
-  console.log(setParty);
+  // const [party, setParty] = useState(0);
+  const party = useState(0)[0];
 
   useEffect(() => {
+    socket.on('dispatch', (action) => {
+      dispatch(action);
+    });
+
     console.log(`fetching characters for party: ${party}`);
+
     fetch('/api/characters')
       .then(res => res.json())
       .then(data => {
         dispatch({ type: 'loadCharacters', characters: data.characters });
       });
+
   }, [party]);
 
   return (
