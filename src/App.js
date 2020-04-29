@@ -123,6 +123,10 @@ const App = () => {
 
   }, [party]);
 
+  const isPlayerPage = (match, location) => {
+    return location.pathname === '/' || location.pathname.substr(0, 8) === '/players';
+  };
+
   return (
     <DispatchContext.Provider value={dispatch}>
       <StateContext.Provider value={state}>
@@ -134,21 +138,13 @@ const App = () => {
               <nav>
                 <ul>
                   <li>
-                    <NavLink to="/" exact={true} activeClassName="selected">Players</NavLink>
-
-                    <ul>
-                      {Object.keys(state.characters).map(id => (
-                        <li key={id}>
-                          <NavLink to={`/players/${id}`} activeClassName="selected">{state.characters[id].name}</NavLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                  <li>
-                    <NavLink to="/npcs" activeClassName="selected">NPCs</NavLink>
+                    <NavLink to="/" isActive={isPlayerPage} activeClassName="selected">Players</NavLink>
                   </li>
                   <li>
                     <NavLink to="/monsters" activeClassName="selected">Monsters</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/combat" activeClassName="selected">Combat</NavLink>
                   </li>
                   <li>
                     <NavLink to="/spells" activeClassName="selected">Spells</NavLink>
@@ -162,21 +158,39 @@ const App = () => {
                 <CharacterSheet />
               </Route>
 
-              <Route path="/npcs">
+              <Route path="/monsters">
                 <main>
-                  <em>NPCs page: work in progress</em>
+                  <p>Monsters page: <em>work in progress</em></p>
+
+                  <ul>
+                    <li>Overview page, just like players</li>
+                    <li>See monster stat blocks</li>
+                    <li>DM only, but monster can be added to combat page</li>
+                  </ul>
                 </main>
               </Route>
 
-              <Route path="/monsters">
+              <Route path="/combat">
                 <main>
-                  <em>Monsters page: work in progress</em>
+                  <p>Combat page: <em>work in progress</em></p>
+
+                  <ul>
+                    <li>Add characters to start encounter</li>
+                    <li>Track initiative and turns</li>
+                    <li>See status conditions and hit points at a glance</li>
+                    <li>Add new characters mid-encounter</li>
+                  </ul>
                 </main>
               </Route>
 
               <Route path="/spells">
                 <main>
-                  <em>Spells page: work in progress</em>
+                  <p>Spells page: <em>work in progress</em></p>
+
+                  <ul>
+                    <li>Quickly search spell database by name</li>
+                    <li>Review spell data and description</li>
+                  </ul>
                 </main>
               </Route>
 
