@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 /**
  * Socket.io Connection
  */
-export const socket = io('localhost:3030');
+export const socket = io(process.env.NODE_ENV === 'production' ? '/' : 'localhost:3030');
 
 
 /**
