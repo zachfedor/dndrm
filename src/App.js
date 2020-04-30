@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 
 import CharacterSheet from './CharacterSheet';
+import CombatPanel from './CombatPanel';
 import OverviewPanel from './OverviewPanel';
 import { socket } from './utils';
 import './App.css';
@@ -24,12 +25,29 @@ export const DispatchContext = React.createContext();
 //   2: [true]
 // }
 const initialState = {
-  characters: {}
+  characters: {},
 };
 
 const LOCAL_ACTIONS = [
   'loadCharacters',
 ];
+
+const resetCombat = (characters) => Object.keys(characters).map((id) => ({
+  ...characters[id],
+  initiative: null,
+})).reduce((obj, cur) => {
+  obj[cur.id] = cur;
+  return obj;
+}, {});
+
+const updateCombat = (characters, initiatives, conditions) => Object.keys(characters).map((id) => ({
+  ...characters[id],
+  initiative: initiatives[id],
+  conditions: conditions[id],
+})).reduce((obj, cur) => {
+  obj[cur.id] = cur;
+  return obj;
+}, {});
 
 const reducer = (state, action) => {
   if (!LOCAL_ACTIONS.includes(action.type) && !action.fromServer) {
@@ -43,6 +61,16 @@ const reducer = (state, action) => {
       return {
         ...state,
         characters: action.characters,
+      };
+    case 'resetCombat':
+      return {
+        ...state,
+        characters: resetCombat(state.characters),
+      };
+    case 'updateCombat':
+      return {
+        ...state,
+        characters: updateCombat(state.characters, action.initiatives, action.conditions),
       };
     case 'changeAbilityScore':
 
@@ -170,18 +198,7 @@ const App = () => {
                 </main>
               </Route>
 
-              <Route path="/combat">
-                <main>
-                  <p>Combat page: <em>work in progress</em></p>
-
-                  <ul>
-                    <li>Add characters to start encounter</li>
-                    <li>Track initiative and turns</li>
-                    <li>See status conditions and hit points at a glance</li>
-                    <li>Add new characters mid-encounter</li>
-                  </ul>
-                </main>
-              </Route>
+              <Route path="/combat" component={CombatPanel} />
 
               <Route path="/spells">
                 <main>
