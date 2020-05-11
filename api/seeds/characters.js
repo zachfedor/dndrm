@@ -72,6 +72,11 @@ exports.seed = function(knex) {
           },
         }),
         'weapon_notes': "**Proficiencies**: Daggers, darts, light crossbows, long and short bows, long and short swords, quarterstaffs, and slings\n\n**Other**: some other note...",
+        'spell_slots': {
+          1: [true, true, false, false],
+          2: [true, false],
+        },
+        'spell_notes': "**Cantrips**: Mage Hand, Prestidigitation, Ray of Frost, Shocking Grasp\n\n**Spellbook**:\n\n- **1**: Burning Hands, Detect Magic, Mage Armor, Magic Missile, Shield, Sleep"
       }]);
     });
 };

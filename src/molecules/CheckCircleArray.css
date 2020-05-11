@@ -8,3 +8,7 @@
   margin-left: 1rem;
 }
 
+.CheckCircleArray .CheckCircle:first-child {
+  margin-left: 0rem;
+}
+

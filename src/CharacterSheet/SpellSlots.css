@@ -1,0 +1,12 @@
+.SpellSlots {
+  margin-top: 1rem;
+}
+
+.SpellSlots td:first-of-type {
+  text-align: right;
+}
+
+.SpellSlots td:last-of-type {
+  text-align: left;
+  width: 99%;
+}

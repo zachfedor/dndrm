@@ -8,7 +8,7 @@ import {
   getHitPointStatus,
   getProficiencyBonus,
 } from '../formulas';
-import SpellSlots from './SpellSlots';
+import SpellSlots from '../CharacterSheet/SpellSlots';
 import StatList from './StatList';
 import Stat from './Stat';
 import './CharacterCard.css';

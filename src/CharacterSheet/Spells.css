@@ -1,0 +1,11 @@
+.Spells {
+  margin-top: 2rem;
+}
+
+.Spells .Table:first-child td:first-child {
+  text-transform: capitalize;
+}
+
+.Spells .MarkdownEditor {
+  margin-top: 2rem;
+}

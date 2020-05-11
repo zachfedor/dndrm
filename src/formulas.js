@@ -152,3 +152,55 @@ export const getWeaponDamage = (character, weapon) => {
   return `${WEAPONS[weapon].damageDie} ${signedMod}`;
 };
 
+
+/**
+ * Get spellcasting ability from character object
+ *
+ * @param {object} character - The entire character object
+ * @returns {string|null}
+ */
+export const getSpellcastingAbility = (character) => {
+  switch (character.class.toLowerCase()) {
+    case 'wizard':
+      return 'intelligence';
+    case 'cleric':
+    case 'druid':
+    case 'ranger':
+      return 'wisdom';
+    case 'bard':
+    case 'paladin':
+    case 'sorceror':
+    case 'warlock':
+      return 'charisma';
+    default:
+      return null;
+  }
+};
+
+
+/**
+ * Get spell attack bonus from a character object
+ *
+ * @param {object} character - The entire character object
+ * @return {number}
+ */
+export const getSpellAttackBonus = (character) => {
+  const ability = getSpellcastingAbility(character);
+  if (!ability) return 0;
+
+  const modifier = getAbilityModifier(character, ability);
+  const proficiency = getProficiencyBonus(character);
+
+  return modifier + proficiency;
+};
+
+
+/**
+ * Get spell save DC from a character object
+ *
+ * @param {object} character - The entire character object
+ * @return {number}
+ */
+export const getSpellSaveDC = (character) => {
+  return getSpellAttackBonus(character) + 8;
+};

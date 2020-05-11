@@ -8,6 +8,7 @@ import CharacterHeader from './CharacterHeader';
 import Abilities from './Abilities';
 import HitPoints from './HitPoints';
 import Skills from './Skills';
+import Spells from './Spells';
 import Weapons from './Weapons';
 import './index.css';
 
@@ -73,13 +74,7 @@ const CharacterSheet = () => {
             </TabPanel>
 
             <TabPanel>
-              <section>
-                <p>Spellcasting Ability: </p>
-                <p>Spell Save DC: 8 + Proficiency + Ability</p>
-                <p>Spell Attack Bonus: Proficiency + Ability</p>
-                <p>Spell Slots</p>
-                <p>Spell List and Notes</p>
-              </section>
+              <Spells character={character} />
             </TabPanel>
 
             <TabPanel>

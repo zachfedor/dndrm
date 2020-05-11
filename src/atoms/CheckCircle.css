@@ -14,6 +14,12 @@
 .CheckCircle.red {
   --primary-color: var(--red);
 }
+.CheckCircle.aqua {
+  --primary-color: var(--aqua);
+}
+.CheckCircle.blue {
+  --primary-color: var(--blue);
+}
 .CheckCircle.purple {
   --primary-color: var(--purple);
 }

@@ -19,19 +19,21 @@
   margin-left: 1rem;
 }
 
-.CharacterSheet article {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
+@media (min-width: 900px) {
+  .CharacterSheet article {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 
-.CharacterSheet article .CharacterHeader {
-  width: 100%;
-}
+  .CharacterSheet article .CharacterHeader {
+    width: 100%;
+  }
 
-.CharacterSheet article .column + .column {
-  width: 60%;
+  .CharacterSheet article .column + .column {
+    width: 60%;
+  }
 }
 
 .CharacterSheet .react-tabs {
