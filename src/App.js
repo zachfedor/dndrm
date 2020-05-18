@@ -49,6 +49,7 @@ const updateCombat = (characters, initiatives, conditions) => Object.keys(charac
   return obj;
 }, {});
 
+
 const reducer = (state, action) => {
   if (!LOCAL_ACTIONS.includes(action.type) && !action.fromServer) {
     // send action to the other clients for real time updates if it originated 
@@ -62,6 +63,17 @@ const reducer = (state, action) => {
         ...state,
         characters: action.characters,
       };
+    case 'updateCharacter':
+      return {
+        ...state,
+        characters: {
+          ...state.characters,
+          [action.id]: {
+            ...state.characters[action.id],
+            ...action.character,
+          },
+        },
+      };
     case 'resetCombat':
       return {
         ...state,
@@ -73,7 +85,6 @@ const reducer = (state, action) => {
         characters: updateCombat(state.characters, action.initiatives, action.conditions),
       };
     case 'changeAbilityScore':
-
       return {
         ...state,
         characters: {

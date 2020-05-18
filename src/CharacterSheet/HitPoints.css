@@ -10,9 +10,6 @@
 
 .HitPoints div.row {
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: flex-start;
 }
 
 .HitPoints .Table {
@@ -29,30 +26,66 @@
   vertical-align: middle;
 }
 
-.HitPoints .Table .current {
+.HitPoints-current {
+  flex: 1;
+  margin-right: 3rem;
+}
+
+.HitPoints-current .current {
   font-size: 2rem;
 }
 
-.HitPoints .Table .temporary {
-  color: var(--blue);
+.HitPoints-current .max {
+  position: relative;
+}
+.HitPoints-current .max::before {
+  color: var(--gray-light);
+  content: '/';
+  left: -0.5rem;
+  position: absolute;
+}
+
+.HitPoints-change {
+  display: flex;
+  flex: 1;
+  align-self: flex-end;
+}
+
+.HitPoints-change div {
+  align-items: stretch;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: stretch;
+}
+
+.HitPoints-change > div:first-of-type {
+  margin-right: 1rem;
+}
+
+.HitPoints-change .Input {
+  display: block;
+  font-size: 1.2rem;
+  height: 100%;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.HitPoints-change .Button + .Button {
+  margin-top: 0.5rem;
+}
+
+.HitPoints-death,
+.HitPoints-dice {
+  margin-top: 2rem;
+  flex: 1;
+}
+.HitPoints-dice {
+  margin-right: 3rem;
 }
 
 .HitPoints-death .CheckCircleArray {
-  justify-content: flex-end;
-}
-
-.HitPoints-change,
-.HitPoints-dice {
-  margin-top: 2rem;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-}
-
-.HitPoints-change .Button,
-.HitPoints-change .Input,
-.HitPoints-dice .Input,
-.HitPoints-dice .Input + label {
-  margin-left: 1rem; 
+  justify-content: center;
 }
 

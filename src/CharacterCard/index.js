@@ -53,7 +53,7 @@ const CharacterCard = ({ character }) => {
           sign={true}
         />
         <Stat label="Armor Class"
-          value={12}
+          value={character.armorClass}
         />
       </StatList>
 

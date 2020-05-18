@@ -6,13 +6,19 @@
   font-family: 'Lora', Georgia, serifs;
   font-size: 1rem;
   padding: 0.2rem 0.5rem;
+  transition: border 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
 }
+
 .Button:hover,
 .Button:focus {
   border: 1px solid var(--aqua);
   box-shadow: 0 0 5px var(--aqua);
   color: var(--aqua-dark);
   outline: none;
+}
+
+.Button:active {
+  box-shadow: 0 0 1px var(--aqua);
 }
 
 .Button.editable {

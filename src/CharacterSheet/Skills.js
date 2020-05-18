@@ -60,6 +60,8 @@ const Skills = ({ character }) => {
           ))}
         </tbody>
       </Table>
+
+      <p>Passive Skill = 10 + Modifier</p>
     </section>
   );
 };
