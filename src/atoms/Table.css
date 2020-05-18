@@ -7,7 +7,10 @@
 .Table th {
   padding: 0.5rem 0.8rem;
   text-align: center;
-  border-bottom: 1px solid var(--gray-light);
+}
+
+.Table td {
+  border-top: 1px solid var(--gray-light);
 }
 
 .Table td:first-of-type,
@@ -15,6 +18,3 @@
   text-align: left;
 }
 
-.Table tr:last-of-type {
-  border-bottom: none;
-}

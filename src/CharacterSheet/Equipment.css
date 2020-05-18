@@ -1,0 +1,16 @@
+.Equipment {
+  margin-top: 2rem;
+}
+
+.Equipment .Table td,
+.Equipment .Table th {
+  text-align: center;
+}
+
+.Equipment .Table th {
+  text-transform: uppercase;
+}
+
+.Equipment .MarkdownEditor {
+  margin-top: 2rem;
+}

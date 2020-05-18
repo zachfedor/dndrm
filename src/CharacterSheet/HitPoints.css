@@ -16,10 +16,6 @@
   width: auto;
 }
 
-.HitPoints .Table tr:last-of-type td {
-  border: none;
-}
-
 .HitPoints .Table tr td,
 .HitPoints .Table tr th {
   text-align: center;
