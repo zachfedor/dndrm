@@ -6,6 +6,7 @@ import 'react-tabs/style/react-tabs.css';
 import { StateContext } from '../App';
 import CharacterHeader from './CharacterHeader';
 import Abilities from './Abilities';
+import Background from './Background';
 import Equipment from './Equipment';
 import Features from './Features';
 import HitPoints from './HitPoints';
@@ -88,11 +89,7 @@ const CharacterSheet = () => {
             </TabPanel>
 
             <TabPanel>
-              <section>
-                <p>Background and Alignment</p>
-                <p>Languages</p>
-                <p>Personality, Ideals, Bonds, Flaws</p>
-              </section>
+              <Background character={character} />
             </TabPanel>
           </Tabs>
         </div>

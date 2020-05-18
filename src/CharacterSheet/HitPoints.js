@@ -79,7 +79,7 @@ const HitPoints = ({ character }) => {
           </thead>
           <tbody>
             <tr>
-              <td className={cx('current', hitPointStatus(current))}>{current}</td>
+              <td className={cx('current', hitPointStatus(current, max))}>{current}</td>
               <td className="max">{max}</td>
               <td>{temporary}</td>
             </tr>

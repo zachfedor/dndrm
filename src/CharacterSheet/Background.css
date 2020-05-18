@@ -1,0 +1,9 @@
+.Background,
+.Background .MarkdownEditor {
+  margin-top: 2rem;
+}
+
+.Background > form {
+  display: flex;
+  justify-content: space-between;
+}

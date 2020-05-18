@@ -16,13 +16,13 @@ const CharacterHeader = ({ character }) => {
 
       <form onSubmit={onSubmit}>
         <div className="details">
-          <LabeledInput type="text" id="race" value={character.race} readOnly />
+          <LabeledInput id="race" value={character.race} readOnly />
 
-          <LabeledInput type="text" id="class" label="Class & Level" value={`${character.class} ${character.level}`} readOnly />
+          <LabeledInput id="class" value={character.class} readOnly />
 
-          <LabeledInput type="text" id="background" value={character.background} readOnly />
+          <LabeledInput id="level" value={character.level} readOnly />
 
-          <LabeledInput type="text" id="alignment" value={character.alignment} readOnly />
+          <LabeledInput id="experience" value={character.experience} readOnly />
         </div>
       </form>
     </header>

@@ -38,9 +38,9 @@ const MarkdownEditor = (props) => {
             <Button type="submit">Save</Button>
             <Button type="button" onClick={cancelEdit}>Cancel</Button>
 
-            <span className="help">
-              Formatting: <strong>**bold**</strong>, <em>_italic_</em>, or lists with - or 1.
-            </span>
+            <a className="help" href="https://www.markdownguide.org/cheat-sheet/">
+              Help: Formatting in Markdown
+            </a>
           </div>
         </form>
       ) : (
