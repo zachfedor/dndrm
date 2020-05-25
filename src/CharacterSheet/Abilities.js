@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 
 import { DispatchContext } from '../App';
-import { Button, Input, Table } from '../atoms';
+import { Table } from '../atoms';
 import { ABILITIES } from '../constants';
 import { getAbilityModifier, getSaveModifier } from '../formulas';
 import { LabeledCheckCircle } from '../molecules';
@@ -9,30 +9,20 @@ import { addSign } from '../utils';
 import './Abilities.css';
 
 
-const Abilities = (props) => {
-  const { character } = props;
-
+const Abilities = ({ character }) => {
   const dispatch = useContext(DispatchContext);
-  const [abilities, setAbilities] = useState(character.abilities);
-  const [currentlyEditing, setEditing] = useState();
 
-  const onChange = (ability) => (event) => {
-    setAbilities({
-      ...abilities,
-      [ability]: parseInt(event.target.value)
-    });
-  };
-
-  const onSubmit = (ability) => (event) => {
-    event.preventDefault();
-    setEditing(null);
+  const updateSavingThrows = (ability) => (isAddingSave) => {
     dispatch({
-      type: 'changeAbilityScore',
+      type: 'updateCharacter',
       id: character.id,
-      ability,
-      score: abilities[ability]
+      character: {
+        savingThrows: isAddingSave
+          ? [ ...character.savingThrows, ability ].sort()
+          : character.savingThrows.filter(a => a !== ability),
+      },
     });
-  };
+  }
 
   return (
     <section className="Abilities">
@@ -58,32 +48,10 @@ const Abilities = (props) => {
                 id={name}
                 checked={character.savingThrows.includes(name)}
                 label={name}
-                handleClick={(v) => console.log('clicked', name, v)}
+                handleClick={updateSavingThrows(name)}
               />
             </td>
-            <td>
-              {currentlyEditing === name ? (
-                <form onSubmit={onSubmit(name)}>
-                  <Input
-                    type="number"
-                    min="1"
-                    max="30"
-                    autoFocus
-                    onChange={onChange(name)}
-                    value={abilities[name]}
-                  />
-                  <Button type="submit">Save</Button>
-                </form>
-              ) : (
-                <Button
-                  className="editable"
-                  onClick={() => setEditing(name)}
-                  title="Edit Ability"
-                >
-                  {abilities[name]}
-                </Button>
-              )}
-            </td>
+            <td>{character.abilities[name]}</td>
             <td>{addSign(getAbilityModifier(character, name))}</td>
             <td>{addSign(getSaveModifier(character, name))}</td>
           </tr>

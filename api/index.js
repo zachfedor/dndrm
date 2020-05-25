@@ -8,7 +8,9 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
+const db = require('./db');
 const http = require('http').createServer(app);
+const humps = require('humps');
 const io = require('socket.io')(http);
 // const bodyParser = require('body-parser');
 const path = require('path');
@@ -36,8 +38,25 @@ io.on('connection', (socket) => {
   console.log('socket user connected');
 
   socket.on('dispatch', (action) => {
-    // On receiving an action from a client, update all other clients with the same action
-    io.emit('dispatch', { ...action, fromServer: true });
+    switch (action.type) {
+      case 'updateCharacter':
+        const fields = humps.decamelizeKeys(action.character);
+        Object.keys(fields).forEach(key => {
+          if (Array.isArray(fields[key])) {
+            fields[key] = JSON.stringify(fields[key]);
+          }
+        });
+
+        db('characters')
+          .where({ id: action.id })
+          .update(fields)
+          .then(() => {
+            // On receiving an action from a client, update all other clients with the same action
+            io.emit('dispatch', { ...action, fromServer: true });
+          });
+      default:
+        console.log('action: ', action);
+    }
   });
 });
 

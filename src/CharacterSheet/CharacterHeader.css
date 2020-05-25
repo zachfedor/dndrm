@@ -2,8 +2,20 @@
   margin-top: 2rem;
 }
 
-.CharacterHeader h2 {
+.CharacterHeader > div {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+}
+
+.CharacterHeader div h2 {
   margin: 0;
+}
+
+.CharacterHeader div p {
+  color: var(--orange-dark);
+  font-style: italic;
+  margin: 0 auto 0 1rem;
 }
 
 .CharacterHeader form div {

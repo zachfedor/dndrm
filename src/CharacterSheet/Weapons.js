@@ -12,9 +12,11 @@ import './Weapons.css';
 const Weapons = ({ character }) => {
   const dispatch = useContext(DispatchContext);
   const updateWeaponNotes = (weaponNotes) => dispatch({
-    type: 'updateWeaponNotes',
+    type: 'updateCharacter',
     id: character.id,
-    weaponNotes,
+    character: {
+      weaponNotes,
+    },
   });
 
   return (

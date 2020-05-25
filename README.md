@@ -45,13 +45,13 @@ $ yarn dev
 ## TODO
 
 - [x] Fix spell slot and death save toggles
-- [ ] Save to database
+- [x] Save to database
 - [ ] Finish ability to edit stats and character details
 - [ ] Add button to add/remove weapons
 - [ ] Add ability to edit temp hp and hit dice
 - [ ] Create modal for edit wizard for multi-step updates like adding weapons
 - [ ] Create modal for error messages
 - [ ] Add undo/redo functionality
-- [ ] On database errors, rollback the intended local edit and don't send socket message to all clients
+- [ ] On database errors, rollback the intended local edit
 - [ ] Add page for dice rolls and history?
 

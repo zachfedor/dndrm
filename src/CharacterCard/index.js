@@ -21,7 +21,7 @@ const CharacterCard = ({ character }) => {
         <header>
           <h2>{character.name}</h2>
 
-          <p>{character.race} {character.class}</p>
+          <p>{character.race} {character.class} {character.level}</p>
 
           <dl className="hitpoints" title="Current Hit Points">
             <dt>HP:</dt>

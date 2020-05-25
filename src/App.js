@@ -20,10 +20,6 @@ export const StateContext = React.createContext();
 export const DispatchContext = React.createContext();
 
 
-// spellSlots: {
-//   1: [true, true, false],
-//   2: [true]
-// }
 const initialState = {
   characters: {},
 };
@@ -83,58 +79,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         characters: updateCombat(state.characters, action.initiatives, action.conditions),
-      };
-    case 'changeAbilityScore':
-      return {
-        ...state,
-        characters: {
-          ...state.characters,
-          [action.id]: {
-            ...state.characters[action.id],
-            abilities: {
-              ...state.characters[action.id].abilities,
-              [action.ability]: action.score
-            }
-          }
-        }
-      };
-    case 'updateProficiencies':
-      return {
-        ...state,
-        characters: {
-          ...state.characters,
-          [action.id]: {
-            ...state.characters[action.id],
-            proficiencies: action.proficiencies
-          }
-        }
-      };
-    case 'updateWeaponNotes':
-      return {
-        ...state,
-        characters: {
-          ...state.characters,
-          [action.id]: {
-            ...state.characters[action.id],
-            weaponNotes: action.weaponNotes,
-          },
-        },
-      };
-    case 'toggleSpellSlot':
-      const { characterID, level, slot } = action;
-      const character = state.characters[characterID];
-      return {
-        ...state,
-        characters: {
-          ...state.characters,
-          [characterID]: {
-            ...character,
-            spellSlots: {
-              ...character.spellSlots,
-              [level]: character.spellSlots[level].map((s, i) => slot === i ? !s : s)
-            }
-          }
-        }
       };
     default:
       throw new Error();

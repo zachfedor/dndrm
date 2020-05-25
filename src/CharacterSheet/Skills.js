@@ -13,14 +13,14 @@ const Skills = ({ character }) => {
   const dispatch = useContext(DispatchContext);
 
   const updateProficiencies = (skill) => (isAddingSkill) => {
-    const newProficiencies = isAddingSkill
-      ? [ ...character.proficiencies, skill ].sort()
-      : character.proficiencies.filter(s => s !== skill);
-
     dispatch({
-      type: 'updateProficiencies',
+      type: 'updateCharacter',
       id: character.id,
-      proficiencies: newProficiencies,
+      character: {
+        proficiencies: isAddingSkill
+          ? [ ...character.proficiencies, skill ].sort()
+          : character.proficiencies.filter(s => s !== skill),
+      },
     });
   };
 

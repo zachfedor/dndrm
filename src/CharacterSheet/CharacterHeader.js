@@ -9,16 +9,11 @@ import {
   getProficiencyBonus,
   getSkillModifier,
 } from '../formulas';
-import { LabeledInput } from '../molecules';
 import { addSign } from '../utils';
 import './CharacterHeader.css';
 
 const CharacterHeader = ({ character }) => {
   const dispatch = useContext(DispatchContext);
-  // const onChange = (event) => {
-  //   console.log(event.target.id, event.target.value);
-  // };
-  const onSubmit = () => console.log('Updated character header');
 
   const toggleInspiration = () => dispatch({
     type: 'updateCharacter',
@@ -28,19 +23,11 @@ const CharacterHeader = ({ character }) => {
 
   return (
     <header className="CharacterHeader">
-      <h2>{character.name}</h2>
+      <div>
+        <h2>{character.name}</h2>
 
-      <form onSubmit={onSubmit}>
-        <div className="details">
-          <LabeledInput id="race" value={character.race} readOnly />
-
-          <LabeledInput id="class" value={character.class} readOnly />
-
-          <LabeledInput id="level" value={character.level} readOnly />
-
-          <LabeledInput id="experience" value={character.experience} readOnly />
-        </div>
-      </form>
+        <p>{character.race} {character.class} {character.level}</p>
+      </div>
 
       <StatList className="Stats">
         <Stat label="Proficiency Bonus">
@@ -63,6 +50,9 @@ const CharacterHeader = ({ character }) => {
             checked={character.inspiration}
             handleClick={toggleInspiration}
           />
+        </Stat>
+        <Stat label="Experience">
+          {character.experience}
         </Stat>
       </StatList>
     </header>

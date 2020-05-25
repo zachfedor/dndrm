@@ -60,7 +60,7 @@
 .MarkdownEditor_preview ol,
 .MarkdownEditor_preview blockquote,
 .MarkdownEditor_preview p {
-  margin: 0 0 0.5rem;
+  margin: 0 0 1rem;
 }
 .MarkdownEditor_preview ul,
 .MarkdownEditor_preview ol,
