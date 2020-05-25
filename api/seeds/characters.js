@@ -101,10 +101,10 @@ exports.seed = function(knex) {
             ability: 'strength',
             proficiency: true,
           },
-          'crossbow, light': {
-            ability: 'dexterity',
-            proficiency: true,
-          },
+          // 'crossbow, light': {
+          //   ability: 'dexterity',
+          //   proficiency: true,
+          // },
         }),
       },
 
@@ -154,10 +154,10 @@ exports.seed = function(knex) {
             ability: 'dexterity',
             proficiency: true,
           },
-          'crossbow, light': {
-            ability: 'dexterity',
-            proficiency: true,
-          },
+          // 'crossbow, light': {
+          //   ability: 'dexterity',
+          //   proficiency: true,
+          // },
         }),
       },
 
