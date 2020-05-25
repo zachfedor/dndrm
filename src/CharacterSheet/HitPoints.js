@@ -4,7 +4,7 @@ import { DispatchContext } from '../App';
 import { Button, Input, Table } from '../atoms';
 import { hitPointStatus } from '../formulas';
 import { CheckCircleArray } from '../molecules';
-import { cx } from '../utils';
+import { cx, toggleByIndex } from '../utils';
 import './HitPoints.css';
 
 
@@ -61,8 +61,16 @@ const HitPoints = ({ character }) => {
     changeHPInput(null);
   };
 
-  const [successes, setSuccesses] = useState([false, false, false]);
-  const [failures, setFailures] = useState([false, false, false]);
+  const createSaveHandler = (type) => (index) => dispatch({
+    type: 'updateCharacter',
+    id: character.id,
+    character: {
+      hp: {
+        ...character.hp,
+        [type]: toggleByIndex(character.hp[type], index),
+      },
+    },
+  });
 
   return (
     <section className="HitPoints">
@@ -132,18 +140,18 @@ const HitPoints = ({ character }) => {
               <td>
                 <CheckCircleArray
                   color="green"
-                  handleClick={setSuccesses}
+                  handleClick={createSaveHandler('successes')}
                   label="Successes"
-                  values={successes}
+                  values={character.hp.successes}
                 /> 
               </td>
             </tr>
             <tr>
               <td>
                 <CheckCircleArray
-                  handleClick={setFailures}
+                  handleClick={createSaveHandler('failures')}
                   label="Failures"
-                  values={failures}
+                  values={character.hp.failures}
                 /> 
               </td>
             </tr>

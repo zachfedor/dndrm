@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { DispatchContext } from '../App';
 import { ABILITIES } from '../constants';
 import {
   getAbilityModifier,
@@ -16,14 +15,6 @@ import './CharacterCard.css';
 
 
 const CharacterCard = ({ character }) => {
-  const dispatch = useContext(DispatchContext);
-  const toggleSpellSlot = (level, slot) => dispatch({
-    type: 'toggleSpellSlot',
-    characterID: character.id,
-    level,
-    slot
-  });
-
   return (
     <article className="CharacterCard">
       <Link to={`/players/${character.id}`}>
@@ -59,11 +50,11 @@ const CharacterCard = ({ character }) => {
         <p>
           Skills: {character.proficiencies.join(', ')}
         </p>
-
-        {character.spellSlots && (
-          <SpellSlots slots={character.spellSlots} toggleSpellSlot={toggleSpellSlot} />
-        )}
       </Link>
+
+      {character.spellSlots && (
+        <SpellSlots character={character} />
+      )}
     </article>
   );
 };

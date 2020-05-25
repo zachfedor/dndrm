@@ -26,3 +26,14 @@ export const cx = (...classes) => classes.filter(cls => cls).join(' ');
  * @return {string} - Either '+n' or '-n';
  */
 export const addSign = n => n > 0 ? `+${n}` : `${n}`;
+
+
+/**
+ * Toggle an element in a boolean array
+ *
+ * @param {array} values - Array of boolean values
+ * @param {number} index - Index of the element to toggle
+ * @return {array} - New array of booleans
+ */
+export const toggleByIndex = (values, index) => values.map((v, i) => i === index ? !v : v);
+

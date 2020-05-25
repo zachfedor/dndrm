@@ -5,9 +5,7 @@ import './CheckCircleArray.css';
 
 
 const CheckCircleArray = ({ values, label = null, handleClick, ...props }) => {
-  const createHandler = (index) => () => {
-    handleClick(values.map((v, i) => i === index ? !v : v).sort().reverse());
-  };
+  const createHandler = (index) => () => handleClick(index);
 
   return (
     <div className="CheckCircleArray">

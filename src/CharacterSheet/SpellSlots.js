@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
+import { DispatchContext } from '../App';
 import { Table } from '../atoms';
 import { CheckCircleArray } from '../molecules';
+import { toggleByIndex } from '../utils';
 import './SpellSlots.css';
 
-const SpellSlots = (props) => {
-  const slotsPerLevel = props.slots;
+const SpellSlots = ({ character }) => {
+  const dispatch = useContext(DispatchContext);
+  const slotsPerLevel = character.spellSlots;
 
-  const createHandler = (level) => () => {
-    console.log('burn spell at level', level);
-  };
+  const createHandler = (level) => (index) => dispatch({
+    type: 'updateCharacter',
+    id: character.id,
+    character: {
+      spellSlots: {
+        ...slotsPerLevel,
+        [level]: toggleByIndex(slotsPerLevel[level], index),
+      },
+    },
+  });
 
   return (
     <Table className="SpellSlots">

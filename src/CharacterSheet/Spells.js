@@ -14,8 +14,6 @@ import './Spells.css';
 const Spells = ({ character }) => {
   const ability = getSpellcastingAbility(character);
 
-  const toggleSpellSlot = () => { console.log('toggle spell slot') };
-
   const updateSpellNotes = (spellNotes) => console.log('update spell notes', spellNotes);
 
   return (
@@ -40,7 +38,7 @@ const Spells = ({ character }) => {
           </tbody>
         </Table>
 
-        <SpellSlots slots={character.spellSlots} toggleSpellSlot={toggleSpellSlot} />
+        <SpellSlots character={character} />
 
         <MarkdownEditor content={character.spellNotes} handleSubmit={updateSpellNotes} />
         </>
