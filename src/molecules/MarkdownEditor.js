@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   defaultBlockParse as mdParse,
   defaultReactOutput as mdOutput,
@@ -12,6 +12,11 @@ import './MarkdownEditor.css';
 const MarkdownEditor = (props) => {
   const [editing, setEditing] = useState(false);
   const [content, changeContent] = useState(props.content);
+
+  useEffect(() => {
+    // if content changes from parent, reflect change in local state safely
+    changeContent(props.content);
+  }, [props.content]);
 
   const startEdit = () => setEditing(true);
 
