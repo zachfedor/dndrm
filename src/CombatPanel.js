@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { DispatchContext, StateContext } from './App';
 import { Table, Button, Input } from './atoms';
@@ -82,7 +83,9 @@ const CombatPanel = () => {
                   ) : initiative}
                 </td>
                 <td>
-                  {characters[id].name}
+                  <Link to={`/players/${id}`}>
+                    {characters[id].name}
+                  </Link>
                 </td>
                 <td className={hitPointStatus(hp.current, hp.max)}>
                   {hp.current}

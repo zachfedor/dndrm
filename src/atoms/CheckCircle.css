@@ -4,8 +4,8 @@
   height: 1rem;
   justify-content: center;
   position: relative;
-  width: 1rem;
   --primary-color: var(--orange-dark);
+  width: 1rem;
 }
 
 .CheckCircle.green {
@@ -25,11 +25,15 @@
 }
 
 .CheckCircle input {
+  border-radius: 50%;
   cursor: pointer;
+  height: 100%;
   left: 0;
+  margin: 0;
   opacity: 0;
   position: absolute;
   top: 0;
+  width: 100%;
 }
 
 .CheckCircle div {

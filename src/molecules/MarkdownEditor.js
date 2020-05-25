@@ -47,7 +47,7 @@ const MarkdownEditor = (props) => {
         <div className="MarkdownEditor_preview">
           {mdOutput(mdParse(content))}
           
-          <Button onClick={startEdit}>Update</Button>
+          <Button onClick={startEdit}>Edit</Button>
         </div>
       )}
     </div>

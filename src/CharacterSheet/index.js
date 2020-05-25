@@ -4,9 +4,9 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 import { StateContext } from '../App';
-import CharacterHeader from './CharacterHeader';
 import Abilities from './Abilities';
 import Background from './Background';
+import CharacterHeader from './CharacterHeader';
 import Equipment from './Equipment';
 import Features from './Features';
 import HitPoints from './HitPoints';

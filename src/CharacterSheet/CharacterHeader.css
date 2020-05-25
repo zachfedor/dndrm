@@ -28,3 +28,16 @@
   min-width: 70px;
   width: 12%;
 }
+
+.CharacterHeader .Stats {
+  margin-top: 2rem;
+}
+
+.CharacterHeader .Stats td,
+.CharacterHeader .Stats th {
+  text-align: center;
+}
+
+.CharacterHeader .Stats .CheckCircle {
+  width: auto;
+}
