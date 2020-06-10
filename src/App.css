@@ -27,24 +27,26 @@
 }
 
 .App-nav {
-  height: auto;
-  transition: height 0.3s ease;
-  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 18rem;
+  opacity: 1;
   text-align: center;
+  transition: height 0.3s ease, opacity 0.3s ease;
+  width: 100%;
 }
 
 .App-nav__hidden {
-  display: none;
   height: 0px;
+  opacity: 0;
   overflow: hidden;
 }
 
 .App-navOverlay {
-  background: var(--gray-dark);
   bottom: 0;
   left: 0;
   right: 0;
-  opacity: 0.5;
   position: absolute;
   top: 0;
   z-index: 9;
@@ -73,6 +75,8 @@
     display: block;
     height: auto;
     margin: 2rem 0 0;
+    opacity: 1;
+    transition: none;
   }
   
   .App-navOverlay {
