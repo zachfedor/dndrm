@@ -1,15 +1,18 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import {
-  BrowserRouter as Router,
   NavLink,
   Route,
   Switch,
+  useLocation,
 } from 'react-router-dom';
+import CloseIcon from '@material-ui/icons/Close';
+import MenuIcon from '@material-ui/icons/Menu';
 
+import { Button } from './atoms';
 import CharacterSheet from './CharacterSheet';
 import CombatPanel from './CombatPanel';
 import OverviewPanel from './OverviewPanel';
-import { socket } from './utils';
+import { cx, socket } from './utils';
 import './App.css';
 
 
@@ -88,6 +91,18 @@ const reducer = (state, action) => {
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  // State and effects to track and alter the visibility of the mobile nav menu
+  const [navHidden, setNavHidden] = useState(true);
+  const toggleNav = () => setNavHidden(!navHidden);
+  const hideNav = () => !navHidden && setNavHidden(true);
+
+  const location = useLocation();
+  useEffect(() => {
+    // if location changes, hide the nav if needed
+    setNavHidden(true);
+  }, [location]);
+
   // const [party, setParty] = useState(0);
   const party = useState(0)[0];
 
@@ -113,65 +128,72 @@ const App = () => {
   return (
     <DispatchContext.Provider value={dispatch}>
       <StateContext.Provider value={state}>
-        <Router>
-          <div className="App">
-            <header className="App-header">
-              <h1>D<span>&amp;</span>DRM</h1>
+        <div className={cx('App', !navHidden && 'App__noScroll')}>
+          <header className="App-header">
+            <h1>D<span>&amp;</span>DRM</h1>
 
-              <nav>
+            <Button className="App-navToggle" onClick={toggleNav}>
+              {navHidden ? <MenuIcon/> : <CloseIcon />}
+            </Button>
+
+            <nav className={cx('App-nav', navHidden && 'App-nav__hidden')}>
+              <ul>
+                <li>
+                  <NavLink to="/" isActive={isPlayerPage} activeClassName="selected">Players</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/monsters" activeClassName="selected">Monsters</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/combat" activeClassName="selected">Combat</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/spells" activeClassName="selected">Spells</NavLink>
+                </li>
+              </ul>
+            </nav>
+          </header>
+
+          <div
+            className={cx('App-navOverlay', navHidden && 'App-navOverlay__hidden')}
+            onClick={hideNav}
+          ></div>
+
+          <Switch>
+            <Route path="/players/:id">
+              <CharacterSheet />
+            </Route>
+
+            <Route path="/monsters">
+              <main>
+                <p>Monsters page: <em>work in progress</em></p>
+
                 <ul>
-                  <li>
-                    <NavLink to="/" isActive={isPlayerPage} activeClassName="selected">Players</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/monsters" activeClassName="selected">Monsters</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/combat" activeClassName="selected">Combat</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/spells" activeClassName="selected">Spells</NavLink>
-                  </li>
+                  <li>Overview page, just like players</li>
+                  <li>See monster stat blocks</li>
+                  <li>DM only, but monster can be added to combat page</li>
                 </ul>
-              </nav>
-            </header>
+              </main>
+            </Route>
 
-            <Switch>
-              <Route path="/players/:id">
-                <CharacterSheet />
-              </Route>
+            <Route path="/combat" component={CombatPanel} />
 
-              <Route path="/monsters">
-                <main>
-                  <p>Monsters page: <em>work in progress</em></p>
+            <Route path="/spells">
+              <main>
+                <p>Spells page: <em>work in progress</em></p>
 
-                  <ul>
-                    <li>Overview page, just like players</li>
-                    <li>See monster stat blocks</li>
-                    <li>DM only, but monster can be added to combat page</li>
-                  </ul>
-                </main>
-              </Route>
+                <ul>
+                  <li>Quickly search spell database by name</li>
+                  <li>Review spell data and description</li>
+                </ul>
+              </main>
+            </Route>
 
-              <Route path="/combat" component={CombatPanel} />
-
-              <Route path="/spells">
-                <main>
-                  <p>Spells page: <em>work in progress</em></p>
-
-                  <ul>
-                    <li>Quickly search spell database by name</li>
-                    <li>Review spell data and description</li>
-                  </ul>
-                </main>
-              </Route>
-
-              <Route path="/">
-                <OverviewPanel />
-              </Route>
-            </Switch>
-          </div>
-        </Router>
+            <Route path="/">
+              <OverviewPanel />
+            </Route>
+          </Switch>
+        </div>
       </StateContext.Provider>
     </DispatchContext.Provider>
   );

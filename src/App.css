@@ -1,16 +1,83 @@
 .App {
-  display: flex;
   height: 100%;
-  min-height: 100vh;
+  overflow: auto;
+}
+
+.App__noScroll {
+  overflow: hidden;
 }
 
 .App-header {
   align-items: center;
   background: var(--fg);
   display: flex;
-  flex-direction: column;
+  flex-flow: row wrap;
+  justify-content: space-between;
   min-width: 18vw;
-  padding: 3rem 0;
+  padding: 1rem 3rem;
+  position: relative;
+  z-index: 10;
+}
+
+.App-navToggle {
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: flex;
+  padding: 0.2rem;
+}
+
+.App-nav {
+  height: auto;
+  transition: height 0.3s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.App-nav__hidden {
+  display: none;
+  height: 0px;
+  overflow: hidden;
+}
+
+.App-navOverlay {
+  background: var(--gray-dark);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  z-index: 9;
+}
+.App-navOverlay__hidden {
+  display: none;
+}
+
+@media (min-width: 980px) {
+  .App {
+    display: flex;
+  }
+
+  .App-header {
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    min-height: 100%;
+    padding: 3rem 0;
+  }
+
+  .App-navToggle {
+    display: none;    
+  }
+
+  .App-nav__hidden {
+    display: block;
+    height: auto;
+    margin: 2rem 0 0;
+  }
+  
+  .App-navOverlay {
+    display: none;
+  }
 }
 
 .App-header h1 {
@@ -25,33 +92,35 @@
   transform: translate(1px, 2px) rotate(-10deg);
 }
 
-.App-header nav {
-  margin: 2rem 0 0;
+.App-navToggle svg {
+  fill: var(--bg);
+}
+.App-navToggle:focus svg,
+.App-navToggle:hover svg {
+  fill: var(--aqua);
 }
 
-.App-header nav ul {
+.App-nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-.App-header nav ul ul {
-  padding-left: 1rem;
-}
-
-.App-header nav a {
+.App-nav a {
   color: var(--bg);
   display: block;
   font-size: 1.2rem;
   font-style: italic;
   font-weight: 400;
   letter-spacing: 1px;
+  margin: 0 auto;
   padding: 0.5rem;
   position: relative;
   text-decoration: none;
   transition: color 0.3s;
+  width: fit-content;
 }
-.App-header nav a::after {
+.App-nav a::after {
   background: var(--blue);
   bottom: 0;
   content: '';
@@ -64,24 +133,28 @@
   transition: opacity 0.3s, transform 0.3s;
   width: 100%;
 }
-.App-header nav a.selected,
-.App-header nav a:focus,
-.App-header nav a:hover {
+.App-nav a.selected,
+.App-nav a:focus,
+.App-nav a:hover {
   color: var(--gray);
   outline: none;
 }
-.App-header nav a:focus::after,
-.App-header nav a:hover::after {
+.App-nav a:focus::after,
+.App-nav a:hover::after {
   opacity: 1;
   transform: translateY(0px);
 }
 
 .App main {
-  box-shadow: 5px 0 5px -5px var(--gray) inset,
-              -15px 0 5px -5px var(--gray) inset;
+  box-shadow: 0 5px 5px -5px var(--gray) inset;
   flex-grow: 1;
   overflow-y: auto;
   padding: 3rem;
+}
+@media (min-width: 980px) {
+  .App main {
+    box-shadow: 0 0 5px var(--gray) inset;
+  }
 }
 
 .App main h1 {
