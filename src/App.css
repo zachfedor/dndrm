@@ -92,12 +92,22 @@
   transform: translate(1px, 2px) rotate(-10deg);
 }
 
+.App-navToggle:focus,
+.App-navToggle:hover {
+  border: 1px solid var(--blue);
+  box-shadow: 0 0 7px var(--blue);
+}
+
+.App-navToggle:active {
+  box-shadow: 0 0 2px var(--blue);
+}
+
 .App-navToggle svg {
   fill: var(--bg);
 }
 .App-navToggle:focus svg,
 .App-navToggle:hover svg {
-  fill: var(--aqua);
+  /* fill: var(--blue); */
 }
 
 .App-nav ul {

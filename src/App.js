@@ -132,7 +132,7 @@ const App = () => {
           <header className="App-header">
             <h1>D<span>&amp;</span>DRM</h1>
 
-            <Button className="App-navToggle" onClick={toggleNav}>
+            <Button className="App-navToggle" type="red" onClick={toggleNav}>
               {navHidden ? <MenuIcon/> : <CloseIcon />}
             </Button>
 

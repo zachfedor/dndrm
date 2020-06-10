@@ -1,7 +1,10 @@
 .Button {
+  --primary: var(--aqua);
+  --primary-dark: var(--aqua-dark);
+  --secondary: var(--fg);
   background: none;
-  border: 1px solid var(--aqua);
-  color: var(--fg);
+  border: 1px solid var(--primary);
+  color: var(--secondary);
   cursor: pointer;
   font-family: 'Lora', Georgia, serifs;
   font-size: 1rem;
@@ -11,25 +14,25 @@
 
 .Button:hover,
 .Button:focus {
-  border: 1px solid var(--aqua);
-  box-shadow: 0 0 5px var(--aqua);
-  color: var(--aqua-dark);
+  border: 1px solid var(--primary);
+  box-shadow: 0 0 5px var(--primary);
+  color: var(--primary-dark);
   outline: none;
 }
 
 .Button:active {
-  box-shadow: 0 0 1px var(--aqua);
+  box-shadow: 0 0 2px var(--primary);
 }
 
 .Button.editable {
   border: 0;
-  border: 1px dotted var(--aqua);
-  color: var(--fg);
+  border: 1px dotted var(--primary);
+  color: var(--secondary);
 }
 .Button.editable:hover,
 .Button.editable:focus {
   border-style: solid;
-  color: var(--fg);
+  color: var(--secondary);
 }
 
 a.Button {
