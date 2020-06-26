@@ -51,11 +51,14 @@ body,
 
 a,
 a:visited {
-  color: var(--blue);
-  transition: color 0.3s;
+  color: var(--fg);
+  cursor: pointer;
+  text-decoration-color: var(--blue);
+  transition: color 0.3s, text-decoration-color 0.3s ease;
 }
 
 a:focus,
 a:hover {
   color: var(--blue-dark);
+  text-decoration-color: var(--blue-dark);
 }

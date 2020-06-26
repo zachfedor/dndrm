@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import { Link, useParams } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
@@ -44,11 +46,27 @@ const CharacterSheet = () => {
 
   return (
     <main className="CharacterSheet">
-      <header>
+      <header className="CharacterSheet-header">
         <h1>Character Sheet</h1>
-        <nav>
-          <Link to={`/players/${prev}`} className="Button">Prev</Link>
-          <Link to={`/players/${next}`} className="Button">Next</Link>
+
+        <nav className="CharacterSheet-nav">
+          <Link
+            aria-label="Previous Character"
+            className="Button"
+            title="Previous Character"
+            to={`/characters/${prev}`}
+          >
+            <NavigateBeforeIcon/>
+          </Link>
+
+          <Link
+            aria-label="Next Character"
+            className="Button"
+            title="Next Character"
+            to={`/characters/${next}`}
+          >
+            <NavigateNextIcon/>
+          </Link>
         </nav>
       </header>
 

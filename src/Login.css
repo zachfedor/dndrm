@@ -1,0 +1,20 @@
+.Login_form {
+  border: 1px solid var(--gray);
+  padding: 2rem;
+  margin-top: 2rem;
+  max-width: 800px;
+}
+
+.Login_form .LabeledInput {
+  margin-bottom: 1rem;
+}
+
+.Login_error {
+  color: var(--red);
+  margin: 0 0 0 2rem;
+}
+
+.Login_form div:last-of-type {
+  align-items: center;
+  display: flex;
+}

@@ -7,13 +7,21 @@
   overflow: hidden;
 }
 
+.App__loading {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
 .App-header {
   align-items: center;
   background: var(--fg);
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  max-height: 100%;
   min-width: 18vw;
+  overflow: auto;
   padding: 1rem 3rem;
   position: relative;
   z-index: 10;
@@ -29,8 +37,9 @@
 .App-nav {
   align-items: center;
   display: flex;
-  justify-content: center;
-  height: 18rem;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 25rem;
   opacity: 1;
   text-align: center;
   transition: height 0.3s ease, opacity 0.3s ease;
@@ -120,6 +129,22 @@
   padding: 0;
 }
 
+.App-nav hr {
+  border: none;
+  border-top: 1px solid var(--gray-dark);
+  height: 0px;
+  margin: 0;
+  padding: 0;
+  width: 35%;
+}
+
+@media (min-width: 980px) {
+  .App-nav hr {
+    margin: 1rem auto;
+    width: 65%;
+  }
+}
+
 .App-nav a {
   color: var(--bg);
   display: block;
@@ -147,7 +172,7 @@
   transition: opacity 0.3s, transform 0.3s;
   width: 100%;
 }
-.App-nav a.selected,
+.App-nav a.active,
 .App-nav a:focus,
 .App-nav a:hover {
   color: var(--gray);

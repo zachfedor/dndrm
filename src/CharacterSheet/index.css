@@ -1,4 +1,4 @@
-.CharacterSheet > header {
+.CharacterSheet-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -6,17 +6,22 @@
   margin: 0;
 }
 
-.CharacterSheet > header nav {
+.CharacterSheet-nav {
   margin: 0;
   display: flex;
   flex-direction: row;
 }
 
-.CharacterSheet > header nav a {
+.CharacterSheet-nav a {
+  align-items: center;
   border-color: var(--gray-light);
-  color: var(--gray);
-  display: block;
-  margin-left: 1rem;
+  color: var(--gray-light);
+  display: flex;
+  height: 2rem;
+  justify-content: center;
+  margin-left: 0.5rem;
+  padding: 0;
+  width: 2rem;
 }
 
 @media (min-width: 980px) {

@@ -32,5 +32,7 @@
 }
 
 .Skills p {
+  color: var(--gray);
+  font-style: italic;
   text-align: center;
 }

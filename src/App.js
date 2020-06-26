@@ -8,9 +8,13 @@ import {
 import CloseIcon from '@material-ui/icons/Close';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import { Button } from './atoms';
+import api from './api';
+import Account from './Account';
+import AuthRoute from './AuthRoute';
+import { Button, Loading } from './atoms';
 import CharacterSheet from './CharacterSheet';
 import CombatPanel from './CombatPanel';
+import Login from './Login';
 import OverviewPanel from './OverviewPanel';
 import { cx, socket } from './utils';
 import './App.css';
@@ -25,10 +29,15 @@ export const DispatchContext = React.createContext();
 
 const initialState = {
   characters: {},
+  currentUser: null,
+  loading: [],
 };
 
 const LOCAL_ACTIONS = [
+  'ASYNC_START',
   'loadCharacters',
+  'LOGIN',
+  'LOGOUT',
 ];
 
 const resetCombat = (characters) => Object.keys(characters).map((id) => ({
@@ -57,6 +66,25 @@ const reducer = (state, action) => {
   }
 
   switch (action.type) {
+    case 'ASYNC_START':
+      return {
+        ...state,
+        loading: [
+          ...state.loading,
+          action.loading,
+        ],
+      };
+    case 'LOGIN':
+      return {
+        ...state,
+        currentUser: action.user,
+        loading: state.loading.filter(t => t !== action.type),
+      };
+    case 'LOGOUT':
+      return {
+        ...state,
+        currentUser: null,
+      };
     case 'loadCharacters':
       return {
         ...state,
@@ -88,9 +116,57 @@ const reducer = (state, action) => {
   }
 };
 
+const Characters = () => (
+  <main>
+    <p>character overview for a user</p>
+  </main>
+);
+const Monsters = () => (
+  <main>
+    <p>Monsters page: <em>work in progress</em></p>
+
+    <ul>
+      <li>Overview page, just like players</li>
+      <li>See monster stat blocks</li>
+      <li>DM only, but monster can be added to combat page</li>
+    </ul>
+  </main>
+);
+const Spells = () => (
+  <main>
+    <p>Spells page: <em>work in progress</em></p>
+
+    <ul>
+      <li>Quickly search spell database by name</li>
+      <li>Review spell data and description</li>
+    </ul>
+  </main>
+);
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  // Loading state
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    // check for token in local storage, then send api call to retrieve user
+    // data and populate state.currentUser so they can log in automatically
+    if (api.hasToken()) {
+      dispatch({ type: 'ASYNC_START', loading: 'LOGIN' });
+      api.get('users/current').then((data) => {
+        dispatch({ type: 'LOGIN', user: data.user });
+        setLoaded(true);
+      });
+    } else {
+      setLoaded(true);
+    }
+  }, []);
+  const handleLogout = (event) => {
+    event.preventDefault();
+    api.removeToken();
+    dispatch({ type: 'LOGOUT' });
+  };
 
   // State and effects to track and alter the visibility of the mobile nav menu
   const [navHidden, setNavHidden] = useState(true);
@@ -110,20 +186,27 @@ const App = () => {
     socket.on('dispatch', (action) => {
       dispatch(action);
     });
+  }, []);
 
+  useEffect(() => {
     console.log(`fetching characters for party: ${party}`);
 
-    fetch('/api/characters')
-      .then(res => res.json())
+    api.get('characters')
       .then(data => {
         dispatch({ type: 'loadCharacters', characters: data.characters });
       });
 
   }, [party]);
 
-  const isPlayerPage = (match, location) => {
-    return location.pathname === '/' || location.pathname.substr(0, 8) === '/players';
-  };
+  const isCharacterPage = (match, location) => location.pathname.includes('/characters');
+
+  if (!loaded) {
+    return (
+      <div className={cx('App', 'App__loading')}>
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <DispatchContext.Provider value={dispatch}>
@@ -132,25 +215,52 @@ const App = () => {
           <header className="App-header">
             <h1>D<span>&amp;</span>DRM</h1>
 
-            <Button className="App-navToggle" type="red" onClick={toggleNav}>
+            <Button
+              aria-expanded={!navHidden}
+              aria-label="Toggle navigation menu"
+              className="App-navToggle"
+              onClick={toggleNav}
+            >
               {navHidden ? <MenuIcon/> : <CloseIcon />}
             </Button>
 
             <nav className={cx('App-nav', navHidden && 'App-nav__hidden')}>
               <ul>
                 <li>
-                  <NavLink to="/" isActive={isPlayerPage} activeClassName="selected">Players</NavLink>
+                  <NavLink to="/" exact={true}>Party</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/monsters" activeClassName="selected">Monsters</NavLink>
+                  <NavLink to="/characters" isActive={isCharacterPage}>Characters</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/combat" activeClassName="selected">Combat</NavLink>
+                  <NavLink to="/monsters">Monsters</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/spells" activeClassName="selected">Spells</NavLink>
+                  <NavLink to="/combat">Combat</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/spells">Spells</NavLink>
                 </li>
               </ul>
+
+              <hr/>
+
+              {state.currentUser ? (
+                <ul>
+                  <li>
+                    <NavLink to="/account">Account</NavLink>
+                  </li>
+                  <li>
+                    <a onClick={handleLogout} href="/">Logout</a>
+                  </li>
+                </ul>
+              ) : (
+                <ul>
+                  <li>
+                    <NavLink to="/login">Login</NavLink>
+                  </li>
+                </ul>
+              )}
             </nav>
           </header>
 
@@ -160,38 +270,14 @@ const App = () => {
           ></div>
 
           <Switch>
-            <Route path="/players/:id">
-              <CharacterSheet />
-            </Route>
-
-            <Route path="/monsters">
-              <main>
-                <p>Monsters page: <em>work in progress</em></p>
-
-                <ul>
-                  <li>Overview page, just like players</li>
-                  <li>See monster stat blocks</li>
-                  <li>DM only, but monster can be added to combat page</li>
-                </ul>
-              </main>
-            </Route>
-
-            <Route path="/combat" component={CombatPanel} />
-
-            <Route path="/spells">
-              <main>
-                <p>Spells page: <em>work in progress</em></p>
-
-                <ul>
-                  <li>Quickly search spell database by name</li>
-                  <li>Review spell data and description</li>
-                </ul>
-              </main>
-            </Route>
-
-            <Route path="/">
-              <OverviewPanel />
-            </Route>
+            <Route path="/login" component={Login} />
+            <AuthRoute path="/account" component={Account} />
+            <AuthRoute path="/characters/:id" component={CharacterSheet} />
+            <AuthRoute path="/characters" component={Characters} />
+            <AuthRoute path="/combat" component={CombatPanel} />
+            <AuthRoute path="/monsters" component={Monsters} />
+            <AuthRoute path="/spells" component={Spells} />
+            <AuthRoute path="/" component={OverviewPanel} />
           </Switch>
         </div>
       </StateContext.Provider>

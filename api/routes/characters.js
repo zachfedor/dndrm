@@ -9,7 +9,7 @@ const reduceArrayByID = (obj, item) => {
 
 router.get('/', (req, res) => {
   // get characters from db here
-  db.select('*').from('characters')
+  db.select().from('characters')
     .then(results => {
       const characters = humps.camelizeKeys(results)
         .reduce(reduceArrayByID, {});

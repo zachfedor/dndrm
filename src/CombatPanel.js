@@ -83,7 +83,7 @@ const CombatPanel = () => {
                   ) : initiative}
                 </td>
                 <td>
-                  <Link to={`/players/${id}`}>
+                  <Link to={`/characters/${id}`}>
                     {characters[id].name}
                   </Link>
                 </td>
