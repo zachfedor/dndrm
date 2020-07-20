@@ -1,0 +1,34 @@
+.CampaignForm h2 {
+  margin: 2rem 0 0;
+}
+
+.CampaignForm form {
+  margin: 1rem 0 0;
+}
+
+@media (min-width: 800px) {
+  .CampaignForm form {
+    width: 50%;
+  }
+}
+
+.CampaignForm .Button {
+  margin-top: 1rem;
+}
+
+.CampaignForm .Table {
+  margin: 1rem 0 0;
+}
+
+.CampaignForm .Table td,
+.CampaignForm .Table th {
+  text-align: left;
+}
+
+.CampaignForm .Table td:nth-of-type(2) {
+  width: 55%;
+}
+
+.CampaignForm .Table td:nth-of-type(3) {
+  color: var(--gray);
+}

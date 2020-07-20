@@ -5,6 +5,7 @@ const express = require('express');
  */
 const api = express.Router();
 api.use('/auth', require('./auth'));
+api.use('/campaigns', require('./campaigns'));
 api.use('/characters', require('./characters'));
 api.use('/users', require('./users'));
 

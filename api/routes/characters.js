@@ -1,24 +1,24 @@
 const router = require('express').Router();
 const humps = require('humps');
 const db = require('../db');
+const { arrayToMapBy } = require('../utils');
 
-const reduceArrayByID = (obj, item) => {
-  obj[item.id] = item;
-  return obj;
-};
 
-router.get('/', (req, res) => {
-  // get characters from db here
-  db.select().from('characters')
-    .then(results => {
-      const characters = humps.camelizeKeys(results)
-        .reduce(reduceArrayByID, {});
+router.get('/', (req, res, next) => {
+  const { username } = req.query;
+  const query = db.select().from('characters');
 
-      res.json({ characters });
-    })
-    .catch(error => {
-      console.error('DB_ERROR', error);
-    });
+  if (username) {
+    query.where('username', username);
+  }
+
+  query.then(results => {
+    console.log('character results', results.length);
+    const characters = humps.camelizeKeys(results)
+      .reduce(arrayToMapBy('id'), {});
+
+    res.json({ characters });
+  }).catch(next);
 });
 
 module.exports = router;

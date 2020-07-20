@@ -69,7 +69,7 @@ io.on('connection', (socket) => {
 
   socket.on('dispatch', (action) => {
     switch (action.type) {
-      case 'updateCharacter':
+      case 'UPDATE_CHARACTER':
         const fields = humps.decamelizeKeys(action.character);
         Object.keys(fields).forEach(key => {
           if (Array.isArray(fields[key])) {
@@ -86,7 +86,7 @@ io.on('connection', (socket) => {
           });
         break;
       default:
-        console.log('action: ', action);
+        console.log('Error: Unknown Action', action);
     }
   });
 });

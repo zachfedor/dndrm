@@ -1,0 +1,19 @@
+.CampaignCard {
+  margin: 2rem 0 0;
+}
+
+.CampaignCard header {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.CampaignCard h2 {
+  margin: 0;
+}
+
+.CampaignCard nav .Button {
+  margin-left: 1rem;
+}
+
