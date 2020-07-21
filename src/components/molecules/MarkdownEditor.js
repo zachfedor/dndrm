@@ -13,17 +13,18 @@ const MarkdownEditor = (props) => {
   const [editing, setEditing] = useState(false);
   const [content, changeContent] = useState(props.content);
 
-  useEffect(() => {
-    // if content changes from parent, reflect change in local state safely
-    changeContent(props.content);
-  }, [props.content]);
-
   const startEdit = () => setEditing(true);
 
   const cancelEdit = () => {
     changeContent(props.content);
     setEditing(false);
   };
+
+  useEffect(() => {
+    // if content changes from parent, cancel the edit
+    changeContent(props.content);
+    setEditing(false);
+  }, [props.content]);
 
   const onChange = (event) => changeContent(event.target.value);
 
@@ -44,7 +45,7 @@ const MarkdownEditor = (props) => {
             <Button type="button" onClick={cancelEdit}>Cancel</Button>
 
             <a className="help" href="https://www.markdownguide.org/cheat-sheet/">
-              Help: Formatting in Markdown
+              How To Format Text?
             </a>
           </div>
         </form>
