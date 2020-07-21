@@ -5,38 +5,35 @@ const password = '5487b3c51ba69746f5b9009379ee0d2a7f9fd199d59d8897115fadf959b6fa
 const salt = '5038010b8422d095ff39d3581524d943';
 
 exports.seed = function(knex) {
-  // Delete all existing records first
-  return knex('users').del().then(function() {
-    return knex('users').insert([{
-      id: 1,
-      email: 'dm@test.co',
-      username: 'dm',
-      password: password,
-      salt: salt,
-    }, {
-      id: 2,
-      email: 'player1@test.co',
-      username: 'player1',
-      password: password,
-      salt: salt,
-    }, {
-      id: 3,
-      email: 'player2@test.co',
-      username: 'player2',
-      password: password,
-      salt: salt,
-    }, {
-      id: 4,
-      email: 'player3@test.co',
-      username: 'player3',
-      password: password,
-      salt: salt,
-    }, {
-      id: 5,
-      email: 'dm2@test.co',
-      username: 'dm2',
-      password: password,
-      salt: salt,
-    }]);
-  });
+  return knex('users').insert([{
+    // id: 1,
+    email: 'dm@test.co',
+    username: 'dm',
+    password: password,
+    salt: salt,
+  }, {
+    // id: 2,
+    email: 'player1@test.co',
+    username: 'player1',
+    password: password,
+    salt: salt,
+  }, {
+    // id: 3,
+    email: 'player2@test.co',
+    username: 'player2',
+    password: password,
+    salt: salt,
+  }, {
+    // id: 4,
+    email: 'player3@test.co',
+    username: 'player3',
+    password: password,
+    salt: salt,
+  }, {
+    // id: 5,
+    email: 'dm2@test.co',
+    username: 'dm2',
+    password: password,
+    salt: salt,
+  }]);
 };
