@@ -14,7 +14,7 @@ const path = require('path');
 
 const config = require('./config');
 const db = require('./db');
-const { verifyUser } = require('./controllers/auth');
+const { verifyUser } = require('./auth');
 
 const buildDir = path.join(__dirname, '..', 'build');
 
@@ -47,7 +47,7 @@ app.use(morgan);
 app.use(passport.initialize());
 
 // Register API routes
-app.use('/api', require('./routes'));
+app.use('/api', require('./router'));
 
 // Serve the React client
 app.get('*', (req, res) => {

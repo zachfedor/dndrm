@@ -1,12 +1,9 @@
-const router = require('express').Router();
-const asyncHandler = require('express-async-handler');
 const humps = require('humps');
-const { authRequired } = require('../controllers/auth');
 const db = require('../db');
 const { arrayToMapBy } = require('../utils');
 
 
-router.get('/', authRequired, asyncHandler(async (req, res) => {
+const getAllCampaigns = async (req, res, next) => {
   const { embed, userID } = req.query;
   const query = db.select().from('campaigns');
 
@@ -29,53 +26,53 @@ router.get('/', authRequired, asyncHandler(async (req, res) => {
   }
 
   res.json(body);
-}));
+};
 
 
-router.post('/', authRequired, asyncHandler(async (req, res) => {
-  const result = await db('campaigns')
+const createCampaign = async (req, res, next) => {
+  const [result] = await db('campaigns')
     .returning(['id', 'name', 'user_id', 'created_at'])
     .insert({
       name: req.body.name,
       'user_id': req.user.id,
     });
 
-  const campaign = humps.camelizeKeys(result[0]);
+  const campaign = humps.camelizeKeys(result);
   res.json({ campaign });
-}));
+};
 
 
-router.get('/:id', authRequired, asyncHandler(async (req, res, next) => {
+const getCampaign = async (req, res, next) => {
   const query = db('campaigns').where({ id: req.params.id }).first();
 
   const campaign = humps.camelizeKeys(await query);
 
   res.json({ campaign });
-}));
+};
 
-router.delete('/:id', authRequired, asyncHandler(async (req, res, next) => {
-  await db('campaigns').where({ id: req.params.id }).del();
 
-  res.json({});
-}));
-
-router.put('/:id', authRequired, asyncHandler(async (req, res, next) => {
-  const result = await db('campaigns')
+const updateCampaign = async (req, res, next) => {
+  const [result] = await db('campaigns')
     .returning(['id', 'name', 'user_id', 'created_at'])
     .where({ id: req.params.id })
     .update(humps.decamelizeKeys(req.body));
 
-  const campaign = humps.camelizeKeys(result[0]);
+  const campaign = humps.camelizeKeys(result);
   res.json({ campaign });
-}));
+};
 
-router.get('/:id/characters', authRequired, asyncHandler(async (req, res, next) => {
-  const query = db('characters').where({ 'campaign_id': req.params.id });
 
-  const characters = humps.camelizeKeys(await query)
-    .reduce(arrayToMapBy('id'), {});
+const deleteCampaign = async (req, res, next) => {
+  await db('campaigns').where({ id: req.params.id }).del();
 
-  res.json({ characters });
-}));
+  res.json({});
+};
 
-module.exports = router;
+
+module.exports = {
+  getAllCampaigns,
+  createCampaign,
+  getCampaign,
+  updateCampaign,
+  deleteCampaign,
+};
