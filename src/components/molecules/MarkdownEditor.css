@@ -1,5 +1,7 @@
 .MarkdownEditor {
   border: 1px solid var(--gray-light);
+  display: flex;
+  flex-direction: column;
   padding: 2rem;
   text-align: justify;
 }
@@ -45,14 +47,9 @@
   margin-left: 1rem;
 }
 
-.MarkdownEditor_preview {
-  display: flex;
-  flex-direction: column;
-}
-
-.MarkdownEditor_preview .Button {
+.MarkdownEditor_preview + .Button {
   align-self: flex-end;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 
 .MarkdownEditor_preview div,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   defaultBlockParse as mdParse,
   defaultReactOutput as mdOutput,
@@ -12,8 +12,15 @@ import './MarkdownEditor.css';
 const MarkdownEditor = (props) => {
   const [editing, setEditing] = useState(false);
   const [content, changeContent] = useState(props.content);
+  const [height, setHeight] = useState('15vh');
 
-  const startEdit = () => setEditing(true);
+  // Use a ref to match the textarea height with its rendered output
+  const previewRef = useRef(null);
+
+  const startEdit = () => {
+    if (previewRef.current) setHeight(previewRef.current.offsetHeight + 40);
+    setEditing(true);
+  };
 
   const cancelEdit = () => {
     changeContent(props.content);
@@ -38,7 +45,12 @@ const MarkdownEditor = (props) => {
     <div className={cx("MarkdownEditor", props.className)} >
       {editing ? (
         <form className="MarkdownEditor_form" onSubmit={onSubmit}>
-          <textarea onChange={onChange} value={content} autoFocus />
+          <textarea
+            autoFocus
+            onChange={onChange}
+            style={{ height }}
+            value={content}
+          />
 
           <div>
             <Button type="submit">Save</Button>
@@ -50,11 +62,13 @@ const MarkdownEditor = (props) => {
           </div>
         </form>
       ) : (
-        <div className="MarkdownEditor_preview">
+        <>
+        <div className="MarkdownEditor_preview" ref={previewRef}>
           {mdOutput(mdParse(content))}
-          
-          <Button onClick={startEdit}>Edit</Button>
         </div>
+
+        <Button onClick={startEdit}>Edit</Button>
+        </>
       )}
     </div>
   );
