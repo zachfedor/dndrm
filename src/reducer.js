@@ -115,7 +115,7 @@ export const reducer = (state, action) => {
         campaigns: action.campaigns,
       };
     default:
-      throw new Error();
+      throw new Error(`Unknown action type: ${action.type}`);
   }
 };
 
