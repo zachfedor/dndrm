@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import { DispatchContext } from '../App';
-import { Table } from '../atoms';
+import { Ordinal, Table } from '../atoms';
 import { UPDATE_CHARACTER } from '../../constants/actionTypes';
 import { CheckCircleArray } from '../molecules';
 import { toggleByIndex } from '../../utils';
@@ -26,14 +26,15 @@ const SpellSlots = ({ character }) => {
     <Table className="SpellSlots">
       <thead>
         <tr>
-          <th colSpan={2}>Spell Slots</th>
+          <th>Level</th>
+          <th>Spell Slots</th>
         </tr>
       </thead>
       <tbody>
         {Object.keys(slotsPerLevel).map(level => (
           <tr key={level}>
             <td>
-              {level}
+              <Ordinal num={level} />
             </td>
             <td>
               <CheckCircleArray

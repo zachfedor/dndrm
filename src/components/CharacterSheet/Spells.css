@@ -1,4 +1,7 @@
-.Spells {
+.Spells,
+.Spells-edit {
+  display: flex;
+  flex-direction: column;
   margin-top: 2rem;
 }
 
@@ -6,6 +9,28 @@
   text-transform: capitalize;
 }
 
+.Spells .Button {
+  align-self: flex-end;
+}
+
 .Spells .MarkdownEditor {
   margin-top: 2rem;
+}
+
+.Spells-edit .Table {
+  width: auto;
+}
+
+.Spells-edit .Table .Input {
+  width: 100%;
+}
+
+.Spells-edit .Table .Input[type=number]::-webkit-inner-spin-button, 
+.Spells-edit .Table .Input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: button;
+}
+
+.Spells_buttonGroup .Button {
+  float: right;
+  margin-left: 1rem;
 }
