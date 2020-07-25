@@ -2,7 +2,9 @@ import React from 'react';
 
 const SpellList = () => (
   <main>
-    <p>Spells page: <em>work in progress</em></p>
+    <h1>Spells</h1>
+
+    <p><em>Work In Progress</em></p>
 
     <ul>
       <li>Quickly search spell database by name</li>

@@ -4,11 +4,11 @@ const { arrayToMapBy } = require('../utils');
 
 
 const getAllCharacters = async (req, res, next) => {
-  const { username } = req.query;
+  const { user } = req.query;
   const query = db.select().from('characters');
 
-  if (username) {
-    query.where('username', username);
+  if (user) {
+    query.where('user_id', user);
   }
 
   const results = await query;
@@ -29,7 +29,17 @@ const getCharactersByCampaign = async (req, res, next) => {
 };
 
 
+const getCharacter = async (req, res, next) => {
+  const query = db('characters').where({ id: req.params.id }).first();
+
+  const character = humps.camelizeKeys(await query);
+
+  res.json({ character });
+};
+
+
 module.exports = {
   getAllCharacters,
   getCharactersByCampaign,
+  getCharacter,
 };

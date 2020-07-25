@@ -23,7 +23,7 @@ const Campaign = () => {
   // Fetch campaign data from API on mount or when id changes
   useEffect(() => {
     setLoading(true);
-    api.get(`campaigns/${id}`).then((json) => {
+    api.get(`campaigns/${id}?embed=characters`).then((json) => {
       if (json.campaign) {
         dispatch({
           type: LOAD_CAMPAIGN,

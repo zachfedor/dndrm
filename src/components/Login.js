@@ -34,8 +34,11 @@ const Login = (props) => {
           });
           if (error) setError(null);
         } else {
-          setError(json.error);
+          setError(json.error || "Something went wrong. Try again.");
         }
+        setFormState('done');
+      }).catch(json => {
+        setError(json.error);
         setFormState('done');
       });
   };

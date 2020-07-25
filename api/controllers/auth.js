@@ -23,7 +23,7 @@ const login = (req, res, next) => {
         },
       });
     } else {
-      console.log('authenticate info: ', info);
+      // Username or password is invalid
       return res.status(422).json(info);
     }
   })(req, res, next);

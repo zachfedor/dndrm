@@ -12,8 +12,10 @@ export const LOGOUT = 'LOGOUT';
 /**
  * Character Actions
  */
+export const LOAD_CHARACTER = 'LOAD_CHARACTER';
 export const LOAD_CHARACTERS = 'LOAD_CHARACTERS';
 export const UPDATE_CHARACTER = 'UPDATE_CHARACTER';
+
 export const RESET_COMBAT = 'RESET_COMBAT';
 export const UPDATE_COMBAT = 'UPDATE_COMBAT';
 

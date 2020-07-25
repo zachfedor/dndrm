@@ -1,15 +1,17 @@
-import React, { useContext } from 'react';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import { Link, useParams } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
-import { StateContext } from '../App';
+import api from '../../api';
+import { DispatchContext, StateContext } from '../App';
+import { Loading } from '../atoms';
 import Abilities from './Abilities';
 import Background from './Background';
 import CharacterHeader from './CharacterHeader';
+import { LOAD_CHARACTER } from '../../constants/actionTypes';
 import Equipment from './Equipment';
+import Error from '../Error';
 import Features from './Features';
 import HitPoints from './HitPoints';
 import Skills from './Skills';
@@ -18,57 +20,40 @@ import Weapons from './Weapons';
 import './index.css';
 
 
-const getPrevNextIds = (party, current) => {
-  const i = party.indexOf(current);
-  const next = i + 1 < party.length ? i + 1 : 0;
-  const prev = i - 1 > -1 ? i - 1 : party.length - 1;
-  return {
-    prev: party[prev],
-    next: party[next],
-  };
-};
-
 const CharacterSheet = () => {
-  const state = useContext(StateContext);
-  const party = Object.keys(state.characters);
   const { id } = useParams();
+  const dispatch = useContext(DispatchContext);
+  const state = useContext(StateContext);
+  const character = state.characters[id];
+  const [loading, setLoading] = useState(false);
 
-  if (!party.includes(id)) {
+  useEffect(() => {
+    setLoading(true);
+    api.get(`/characters/${id}`).then((data) => {
+      dispatch({
+        type: LOAD_CHARACTER,
+        character: data.character,
+      });
+      setLoading(false);
+    });
+  }, [dispatch, id]);
+
+  if (loading) {
     return (
-      <main>
-        <h1>Not Found</h1>
-      </main>
+      <Loading />
+    );
+  } else if (!character) {
+    return (
+      <Error
+        error="Not Found"
+        message="That character doesn't exist."
+      />
     );
   }
 
-  const character = state.characters[id];
-  const { prev, next } = getPrevNextIds(party, id);
-
   return (
     <main className="CharacterSheet">
-      <header className="CharacterSheet-header">
-        <h1>Character Sheet</h1>
-
-        <nav className="CharacterSheet-nav">
-          <Link
-            aria-label="Previous Character"
-            className="Button"
-            title="Previous Character"
-            to={`/characters/${prev}`}
-          >
-            <NavigateBeforeIcon/>
-          </Link>
-
-          <Link
-            aria-label="Next Character"
-            className="Button"
-            title="Next Character"
-            to={`/characters/${next}`}
-          >
-            <NavigateNextIcon/>
-          </Link>
-        </nav>
-      </header>
+      <h1>Character Sheet</h1>
 
       <article>
         <CharacterHeader character={character} />

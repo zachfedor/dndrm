@@ -2,6 +2,7 @@ import {
   ASYNC_START,
   LOGIN,
   LOGOUT,
+  LOAD_CHARACTER,
   LOAD_CHARACTERS,
   UPDATE_CHARACTER,
   RESET_COMBAT,
@@ -63,9 +64,14 @@ export const reducer = (state, action) => {
         loading: state.loading.filter(t => t !== action.type),
       };
     case LOGOUT:
+      return initialState;
+    case LOAD_CHARACTER:
       return {
         ...state,
-        currentUser: null,
+        characters: {
+          ...state.characters,
+          [action.character.id]: action.character,
+        },
       };
     case LOAD_CHARACTERS:
       return {
@@ -112,7 +118,14 @@ export const reducer = (state, action) => {
     case LOAD_CAMPAIGNS:
       return {
         ...state,
-        campaigns: action.campaigns,
+        campaigns: {
+          ...state.campaigns,
+          ...action.campaigns,
+        },
+        characters: {
+          ...state.characters,
+          ...action.characters,
+        },
       };
     default:
       throw new Error(`Unknown action type: ${action.type}`);

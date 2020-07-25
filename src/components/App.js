@@ -1,5 +1,6 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import {
+  Link,
   NavLink,
   Route,
   Switch,
@@ -12,6 +13,7 @@ import api from '../api';
 import Account from './Account';
 import AuthRoute from './AuthRoute';
 import { Button, Loading } from './atoms';
+import CharacterForm from './CharacterForm';
 import CharacterSheet from './CharacterSheet';
 import CombatPanel from './CombatPanel';
 import Campaign from './Campaign';
@@ -22,7 +24,7 @@ import CreatureList from './CreatureList';
 import Login from './Login';
 import SpellList from './SpellList';
 import OverviewPanel from './OverviewPanel';
-import { ASYNC_START, LOAD_CHARACTERS, LOGIN, LOGOUT } from '../constants/actionTypes';
+import { ASYNC_START, LOGIN, LOGOUT } from '../constants/actionTypes';
 import { reducer, initialState } from '../reducer';
 import { cx, socket } from '../utils';
 import './App.css';
@@ -37,15 +39,15 @@ export const DispatchContext = React.createContext();
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  // Loading state
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     // check for token in local storage, then send api call to retrieve user
     // data and populate state.currentUser so they can log in automatically
     if (api.hasToken()) {
+      // inform Login component of loading state
       dispatch({ type: ASYNC_START, loading: LOGIN });
+
       api.get('users/current').then((data) => {
         dispatch({ type: LOGIN, user: data.user });
         setLoaded(true);
@@ -54,11 +56,13 @@ const App = () => {
       setLoaded(true);
     }
   }, []);
+
   const handleLogout = (event) => {
     event.preventDefault();
     api.removeToken();
     dispatch({ type: LOGOUT });
   };
+
 
   // State and effects to track and alter the visibility of the mobile nav menu
   const [navHidden, setNavHidden] = useState(true);
@@ -70,9 +74,10 @@ const App = () => {
     // if location changes, hide the nav if needed
     setNavHidden(true);
   }, [location]);
+  // Functions to mark active state for top-level navigation links
+  const isCampaignPage = (_, location) => location.pathname.includes('/campaigns');
+  const isCharacterPage = (_, location) => location.pathname.includes('/characters');
 
-  // const [party, setParty] = useState(0);
-  const party = useState(0)[0];
 
   useEffect(() => {
     // On initial load, setup websocket listener to dispatch actions that
@@ -82,22 +87,10 @@ const App = () => {
     });
   }, []);
 
-  useEffect(() => {
-    console.log(`fetching characters for party: ${party}`);
-
-    api.get('characters')
-      .then(data => {
-        dispatch({ type: LOAD_CHARACTERS, characters: data.characters });
-      });
-
-  }, [party]);
-
-  const isCampaignPage = (_, location) => location.pathname.includes('/campaigns');
-  const isCharacterPage = (_, location) => location.pathname.includes('/characters');
 
   if (!loaded) {
     return (
-      <div className={cx('App', 'App__loading')}>
+      <div className="App">
         <Loading />
       </div>
     );
@@ -108,7 +101,7 @@ const App = () => {
       <StateContext.Provider value={state}>
         <div className={cx('App', !navHidden && 'App__noScroll')}>
           <header className="App-header">
-            <h1>D<span>&amp;</span>DRM</h1>
+            <h1><Link to="/">D<span>&amp;</span>DRM</Link></h1>
 
             <Button
               aria-expanded={!navHidden}
@@ -173,13 +166,15 @@ const App = () => {
             <AuthRoute path="/campaigns/:id" component={Campaign} />
             <AuthRoute path="/campaigns" component={CampaignList} />
 
+            <AuthRoute path="/characters/create" component={CharacterForm} />
             <AuthRoute path="/characters/:id" component={CharacterSheet} />
             <AuthRoute path="/characters" component={CharacterList} />
 
             <AuthRoute path="/combat" component={CombatPanel} />
             <AuthRoute path="/creatures" component={CreatureList} />
             <AuthRoute path="/spells" component={SpellList} />
-            <AuthRoute path="/" component={OverviewPanel} />
+
+            <Route path="/" component={OverviewPanel} />
           </Switch>
         </div>
       </StateContext.Provider>

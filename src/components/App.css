@@ -1,16 +1,12 @@
 .App {
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
   overflow: auto;
 }
 
 .App__noScroll {
   overflow: hidden;
-}
-
-.App__loading {
-  align-items: center;
-  display: flex;
-  justify-content: center;
 }
 
 .App-header {
@@ -19,9 +15,7 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  max-height: 100%;
   min-width: 18vw;
-  overflow: auto;
   padding: 1rem 3rem;
   position: relative;
   z-index: 10;
@@ -66,7 +60,7 @@
 
 @media (min-width: 980px) {
   .App {
-    display: flex;
+    flex-direction: row
   }
 
   .App-header {
@@ -94,15 +88,34 @@
 }
 
 .App-header h1 {
+  margin: 0;
+}
+
+.App-header h1 a,
+.App-header h1 a:visited {
+  display: inline-block;
   color: var(--orange);
   font-style: italic;
-  margin: 0;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.App-header h1 a:focus,
+.App-header h1 a:hover {
+  color: var(--aqua);
+  outline: none;
 }
 
 .App-header h1 span {
   display: inline-block;
   font-size: 1.6rem;
   transform: translate(1px, 2px) rotate(-10deg);
+  transition: transform 0.3s ease;
+}
+
+.App-header h1 a:focus span,
+.App-header h1 a:hover span {
+  transform: rotate(0deg);
 }
 
 .App-navToggle:focus,

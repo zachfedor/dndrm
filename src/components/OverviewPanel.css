@@ -1,0 +1,45 @@
+.OverviewPanel {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.OverviewPanel p {
+  text-align: center;
+  width: 80%;
+}
+
+@media (min-width: 600px) {
+  .OverviewPanel p {
+    width: 50%;  
+  }
+}
+
+.OverviewPanel nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+.OverviewPanel nav div {
+  display: flex;
+  flex-direction: column;
+}
+.OverviewPanel nav div + div {
+  margin-left: 3rem;
+}
+
+.OverviewPanel .Button {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.1rem;
+  padding: 1rem;
+  margin: 1rem;
+  text-align: center;
+}
+
+.OverviewPanel .Button svg {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}

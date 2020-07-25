@@ -43,11 +43,22 @@ const createCampaign = async (req, res, next) => {
 
 
 const getCampaign = async (req, res, next) => {
+  const { embed } = req.query;
   const query = db('campaigns').where({ id: req.params.id }).first();
-
   const campaign = humps.camelizeKeys(await query);
+  const body = { campaign };
 
-  res.json({ campaign });
+  if (embed) {
+    if (embed.includes('characters')) {
+      const subquery = db('characters').where({'campaign_id': campaign.id});
+      body.characters = humps.camelizeKeys(await subquery)
+        .reduce(arrayToMapBy('id'), {});
+    }
+
+    // TODO: embed campaign owner?
+  }
+
+  res.json(body);
 };
 
 

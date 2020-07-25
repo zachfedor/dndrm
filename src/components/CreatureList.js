@@ -2,7 +2,9 @@ import React from 'react';
 
 const CreatureList = () => (
   <main>
-    <p>Creatures page: <em>work in progress</em></p>
+    <h1>Creatures</h1>
+
+    <p><em>Work In Progress</em></p>
 
     <ul>
       <li>Overview page, just like players</li>

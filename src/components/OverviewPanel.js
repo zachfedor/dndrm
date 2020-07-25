@@ -1,18 +1,51 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import ExploreIcon from '@material-ui/icons/Explore';
+import GroupIcon from '@material-ui/icons/Group';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
-import { StateContext } from './App';
-import CharacterCard from './CharacterCard';
+import './OverviewPanel.css';
+
+
+const NavButton = ({ children, to }) => (
+  <Link className="Button" to={to}>
+    {children}
+  </Link>
+);
 
 const OverviewPanel = () => {
-  const characters = useContext(StateContext).characters;
-
   return (
-    <main>
-      <h1>Overview</h1>
+    <main className="OverviewPanel">
+      <p>
+        Welcome to your Dungeons &amp; Dragons Remote Management system, a simple
+        way to keep track of your campaigns, character sheets, and combat
+        encounters.
+      </p>
 
-      {Object.keys(characters).map(id => (
-        <CharacterCard key={id} character={characters[id]} />
-      ))}
+      <nav>
+        <div>
+          <NavButton to="/campaigns">
+            <ExploreIcon />
+            Your Campaigns
+          </NavButton>
+          <NavButton to="/campaigns/create">
+            <AddCircleIcon />
+            New Campaign
+          </NavButton>
+        </div>
+
+        <div>
+          <NavButton to="/characters">
+            <GroupIcon />
+            Your Characters
+          </NavButton>
+          <NavButton to="/characters/create">
+            <PersonAddIcon />
+            New Character
+          </NavButton>
+        </div>
+      </nav>
     </main>
   );    
 };

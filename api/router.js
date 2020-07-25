@@ -43,10 +43,12 @@ register('delete', '/campaigns/:id', deleteCampaign);
  */
 const {
   getAllCharacters,
-  getCharactersByCampaign
+  getCharactersByCampaign,
+  getCharacter,
 } = require('./controllers/characters');
 register('get', '/characters', getAllCharacters);
 register('get', '/campaigns/:id/characters', getCharactersByCampaign);
+register('get', '/characters/:id', getCharacter);
 
 
 /**

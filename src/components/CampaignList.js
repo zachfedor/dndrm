@@ -15,11 +15,11 @@ const CampaignList = () => {
     .sort((a, b) => state.campaigns[a].createdAt - state.campaigns[b].createdAt);
 
   useEffect(() => {
-    console.log('loading campaigns...');
-    api.get('/campaigns?embed=users,characters').then(data => {
+    api.get('/campaigns?embed=characters').then(data => {
       dispatch({
         type: LOAD_CAMPAIGNS,
         campaigns: data.campaigns,
+        characters: data.characters,
       });
     });
   }, [dispatch]);
