@@ -11,6 +11,47 @@
   text-transform: uppercase;
 }
 
+.CoinForm {
+  align-items: baseline;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 1rem 0 0;
+}
+
+.CoinForm label {
+  display: block;
+}
+
+.CoinForm .Button,
+.CoinForm .Input,
+.CoinForm .Select,
+.CoinForm label + label {
+  margin-left: 1rem;
+}
+
+.CoinForm .Input,
+.CoinForm .Select {
+  width: 5rem;
+}
+
+.CoinForm .Button,
+.CoinForm .Input {
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.CoinForm .Button:disabled,
+.CoinForm .Input:disabled {
+  border-color: var(--gray-light);
+  color: var(--gray-light);
+  cursor: not-allowed;
+}
+
+.CoinForm .Button:disabled:hover,
+.CoinForm .Input:disabled:hover {
+  box-shadow: none;
+}
+
 .Equipment .MarkdownEditor {
   margin-top: 2rem;
 }
