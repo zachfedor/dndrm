@@ -10,7 +10,7 @@ import './HitPoints.css';
 
 
 const HitPoints = ({ character }) => {
-  const { current, max, temporary, hitDice } = character.hp;
+  const { current, max, temporary, hitDice, hdRemaining } = character.hp;
 
   const dispatch = useContext(DispatchContext);
 
@@ -125,7 +125,7 @@ const HitPoints = ({ character }) => {
           <tbody>
             <tr>
               <td>{hitDice}</td>
-              <td>1</td>
+              <td>{hdRemaining}</td>
             </tr>
           </tbody>
         </Table>
