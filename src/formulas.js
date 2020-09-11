@@ -161,6 +161,8 @@ export const getWeaponDamage = (character, weapon) => {
  */
 export const getSpellcastingAbility = (character) => {
   switch (character.class.toLowerCase()) {
+    case 'fighter':
+    case 'rogue':
     case 'wizard':
       return 'intelligence';
     case 'cleric':
