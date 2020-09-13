@@ -43,16 +43,13 @@ exports.seed = function(knex) {
     },
     'spell_notes': "**Spells**:\n\n- **Cantrips**: Thaumaturgy, Spare The Dying, Sacred Flame\n- **1**: _Bless_, _Cure Wounds_, Detect Magic, Healing Word, Sanctuary, Shield of Faith\n\n_(Divine Domain Spells)_",
     'weapon_notes': "- **Shortbow**: has a normal range of 80 feet, or up to 320 feet with _disadvantage_ on the attack roll, and requires two hands",
-    weapons: JSON.stringify({
-      mace: {
-        ability: 'strength',
-        proficiency: true,
-      },
-      shortbow: {
-        ability: 'dexterity',
-        proficiency: true,
-      },
-    }),
+    weapons: JSON.stringify([{
+      type: 'mace',
+      proficiency: true,
+    }, {
+      type: 'shortbow',
+      proficiency: true,
+    }]),
     'user_id': 2,
     'campaign_id': 1,
   },
@@ -100,16 +97,13 @@ exports.seed = function(knex) {
     },
     'spell_notes': "**Spells**:\n\n- **Cantrips**: Light, Guidance, Sacred Flame\n- **1**: _Divine Favor_, _Shield of Faith_, Bless, Guiding Bolt, Cure Wounds, Inflict Wounds\n\n_(Divine Domain Spells)_",
     'weapon_notes': "- War Priest: 1 weapon attack as bonus action (3x, used 0/3, regain all after long rest).\n- Versatile: War hammer (1d10)\n- *Lt crossbow: Ammo (range 80/320), loading, 2 handed.\n- Sacred Flame: Target must succeed Dex. saving throw or take 1d8 radiant damage. Range 60 feet.\n- Divine Favor: Weapon attack extra 1d4 radiant damage.\n- Guiding Bolt: 4d6 radiant damage, and next attack roll against target before end of my next turn has Advantage.\n- Inflict Wounds: Melee spell attack. On a hit, 3d10 necrotic damage.",
-    weapons: JSON.stringify({
-      warhammer: {
-        ability: 'strength',
-        proficiency: true,
-      },
-      // 'crossbow, light': {
-      //   ability: 'dexterity',
-      //   proficiency: true,
-      // },
-    }),
+    weapons: JSON.stringify([{
+      type: 'warhammer',
+      proficiency: true,
+    }, {
+      type: 'crossbowLight',
+      proficiency: true,
+    }]),
     'user_id': 3,
     'campaign_id': 1,
   },
@@ -153,20 +147,17 @@ exports.seed = function(knex) {
     'saving_throws': JSON.stringify(['strength', 'constitution']),
     speed: '35 ft',
     'weapon_notes': "- **Longbow:** Ammunition (20), Range 150/600, Heavy, Two-Handed\n\n- **Shortsword:** Finesse, Light\n\n- **Light Crossbow:** Ammunition (20), Range 80/320, Loading, Two-Handed",
-    weapons: JSON.stringify({
-      longbow: {
-        ability: 'dexterity',
-        proficiency: true,
-      },
-      shortsword: {
-        ability: 'dexterity',
-        proficiency: true,
-      },
-      // 'crossbow, light': {
-      //   ability: 'dexterity',
-      //   proficiency: true,
-      // },
-    }),
+    weapons: JSON.stringify([{
+      type: 'longbow',
+      proficiency: true,
+    }, {
+      type: 'shortsword',
+      ability: 'dexterity',
+      proficiency: true,
+    }, {
+      type: 'crossbowLight',
+      proficiency: true,
+    }]),
     'user_id': 4,
     'campaign_id': 1,
   },
@@ -210,20 +201,19 @@ exports.seed = function(knex) {
     'saving_throws': JSON.stringify(['dexterity', 'intelligence']),
     speed: '25 ft',
     'weapon_notes': "**Shortsword.** Finesse, Light\n\n**Daggers.** Finesse, Light, Thrown, Range 20/60\n\n**Shortbow.** Ammunition, Range 80/320, Two-Handed",
-    weapons: JSON.stringify({
-      shortsword: {
-        ability: 'dexterity',
-        proficiency: true,
-      },
-      dagger: {
-        ability: 'dexterity',
-        proficiency: true,
-      },
-      shortbow: {
-        ability: 'dexterity',
-        proficiency: true,
-      },
-    }),
+    weapons: JSON.stringify([{
+      type: 'shortsword',
+      name: 'Moonbeam',
+      ability: 'dexterity',
+      proficiency: true,
+    }, {
+      type: 'dagger',
+      ability: 'dexterity',
+      proficiency: true,
+    }, {
+      type: 'shortbow',
+      proficiency: true,
+    }]),
     'user_id': 1,
     'campaign_id': 2,
   },
@@ -267,16 +257,13 @@ exports.seed = function(knex) {
     'saving_throws': JSON.stringify(['strength', 'constitution']),
     speed: '30 ft',
     'weapon_notes': "**Greatsword.** Heavy, two-handed\n\n**Longbow.** Heavy, two-handed, ammunition, range 150/600 (has a normal range of 150 feet, or up to 600 feet with _disadvantage_ on the attack roll)",
-    weapons: JSON.stringify({
-      greatsword: {
-        ability: 'strength',
-        proficiency: true,
-      },
-      longbow: {
-        ability: 'dexterity',
-        proficiency: true,
-      },
-    }),
+    weapons: JSON.stringify([{
+      type: 'greatsword',
+      proficiency: true,
+    }, {
+      type: 'longbow',
+      proficiency: true,
+    }]),
     'user_id': 2,
     'campaign_id': 2,
   },
@@ -323,12 +310,11 @@ exports.seed = function(knex) {
       1: [true, true, true],
     },
     'spell_notes': "**Cantrips**: Fire Bolt, Mage Hand, Prestidigitation\n\n**Spellbook**:\n\n- **1**: Burning Hands, Charm Person, Mage Armor, Magic Missile, Thunderwave, Comprehend Languages",
-    weapons: JSON.stringify({
-      dagger: {
-        ability: 'dexterity',
-        proficiency: true,
-      },
-    }),
+    weapons: JSON.stringify([{
+      type: 'dagger',
+      ability: 'dexterity',
+      proficiency: true,
+    }]),
     'weapon_notes': "Dagger is light, so you can use 2 at a time or can be thrown, range is 20/60",
     'user_id': 4,
     'campaign_id': 2,

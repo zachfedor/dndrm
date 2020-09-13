@@ -1,59 +1,75 @@
-const buildWeapon = (damageDie, damageType, properties) => ({
-  damageDie,
-  damageType,
-  properties,
-});
+const buildWeapon = (training, category, name, damageDie, damageType, properties, range = null) => {
+  const weapon = {
+    name,
+    training,
+    category,
+    damageDie,
+    damageType,
+    properties,
+  };
+
+  if (range) {
+    weapon.range = range;
+  }
+
+  return weapon;
+};
+
+const buildSMWeapon = (...args) => buildWeapon('simple', 'melee', ...args);
+const buildSRWeapon = (...args) => buildWeapon('simple', 'range', ...args);
+const buildMMWeapon = (...args) => buildWeapon('martial', 'melee', ...args);
+const buildMRWeapon = (...args) => buildWeapon('martial', 'range', ...args);
 
 const WEAPONS = {
   /**
    * Simple Melee
    */
-  club: buildWeapon('1d4', 'bludgeoning'),
-  dagger: buildWeapon('1d4', 'piercing'),
-  greatclub: buildWeapon('1d8', 'bludgeoning'),
-  handaxe: buildWeapon('1d6', 'slashing'),
-  javelin: buildWeapon('1d6', 'piercing'),
-  'light hammer': buildWeapon('1d4', 'bludgeoning'),
-  mace: buildWeapon('1d6', 'bludgeoning'),
-  quarterstaff: buildWeapon('1d6', 'bludgeoning'),
-  sickle: buildWeapon('1d4', 'slashing'),
-  spear: buildWeapon('1d6', 'piercing'),
+  club: buildSMWeapon('Club', '1d4', 'bludgeoning', ['Light']),
+  dagger: buildSMWeapon('Dagger', '1d4', 'piercing', ['Finesse', 'Light', 'Thrown'], [20,60]),
+  greatclub: buildSMWeapon('Greatclub', '1d8', 'bludgeoning', ['Two-handed']),
+  handaxe: buildSMWeapon('Handaxe', '1d6', 'slashing', ['Light', 'Thrown'], [20,60]),
+  javelin: buildSMWeapon('Javelin', '1d6', 'piercing', ['Thrown'], [30,120]),
+  lightHammer: buildSMWeapon('Light hammer', '1d4', 'bludgeoning', ['Light', 'Thrown']),
+  mace: buildSMWeapon('Mace', '1d6', 'bludgeoning', []),
+  quarterstaff: buildSMWeapon('Quarterstaff', '1d6', 'bludgeoning', ['Versatile (1d8)']),
+  sickle: buildSMWeapon('Sickle', '1d4', 'slashing', ['Light']),
+  spear: buildSMWeapon('Spear', '1d6', 'piercing', ['Thrown', 'Versatile (1d8)'], [20,60]),
   /**
    * Simple Ranged
    */
-  'crossbow, light': buildWeapon('1d8', 'piercing'),
-  dart: buildWeapon('1d4', 'piercing'),
-  shortbow: buildWeapon('1d6', 'piercing'),
-  sling: buildWeapon('1d4', 'bludgeoning'),
+  crossbowLight: buildSRWeapon('Crossbow, light', '1d8', 'piercing', ['Ammunition', 'Loading', 'Two-Handed'], [80,320]),
+  dart: buildSRWeapon('Dart', '1d4', 'piercing', ['Finesse', 'Thrown'], [20,60]),
+  shortbow: buildSRWeapon('Shortbow', '1d6', 'piercing', ['Ammunition', 'Two-Handed'], [80,320]),
+  sling: buildSRWeapon('Sling', '1d4', 'bludgeoning', ['Ammunition'], [30,120]),
   /**
    * Martial Melee
    */
-  battleaxe: buildWeapon('1d8', 'slashing'),
-  flail: buildWeapon('1d8', 'bludgeoning'),
-  glaive: buildWeapon('1d10', 'slashing'),
-  greataxe: buildWeapon('1d12', 'slashing'),
-  greatsword: buildWeapon('2d6', 'slashing'),
-  halberd: buildWeapon('1d10', 'slashing'),
-  lance: buildWeapon('1d12', 'piercing'),
-  longsword: buildWeapon('1d8', 'slashing'),
-  maul: buildWeapon('2d6', 'bludgeoning'),
-  morningstar: buildWeapon('1d8', 'piercing'),
-  pike: buildWeapon('1d10', 'piercing'),
-  rapier: buildWeapon('1d8', 'piercing'),
-  scimitar: buildWeapon('1d6', 'slashing'),
-  shortsword: buildWeapon('1d6', 'piercing'),
-  trident: buildWeapon('1d6', 'piercing'),
-  'war pick': buildWeapon('1d8', 'piercing'),
-  warhammer: buildWeapon('1d8', 'bludgeoning'),
-  whip: buildWeapon('1d4', 'slashing'),
+  battleaxe: buildMMWeapon('Battleaxe', '1d8', 'slashing', ['Versatile (1d10)']),
+  flail: buildMMWeapon('Flail', '1d8', 'bludgeoning', []),
+  glaive: buildMMWeapon('Glaive', '1d10', 'slashing', ['Heavy', 'Reach', 'Two-Handed']),
+  greataxe: buildMMWeapon('Greataxe', '1d12', 'slashing', ['Heavy', 'Two-Handed']),
+  greatsword: buildMMWeapon('Greatsword', '2d6', 'slashing', ['Heavy', 'Two-Handed']),
+  halberd: buildMMWeapon('Halberd', '1d10', 'slashing', ['Heavy', 'Reach', 'Two-Handed']),
+  lance: buildMMWeapon('Lance', '1d12', 'piercing', ['Reach', 'Special']),
+  longsword: buildMMWeapon('Longsword', '1d8', 'slashing', ['Versatile (1d10)']),
+  maul: buildMMWeapon('Maul', '2d6', 'bludgeoning', ['Heavy', 'Two-Handed']),
+  morningstar: buildMMWeapon('Morningstar', '1d8', 'piercing', []),
+  pike: buildMMWeapon('Pike', '1d10', 'piercing', ['Heavy', 'Reach', 'Two-Handed']),
+  rapier: buildMMWeapon('Rapier', '1d8', 'piercing', ['Finesse']),
+  scimitar: buildMMWeapon('Scimitar', '1d6', 'slashing', ['Finesse', 'Light']),
+  shortsword: buildMMWeapon('Shortsword', '1d6', 'piercing', ['Finesse', 'Light']),
+  trident: buildMMWeapon('Trident', '1d6', 'piercing', ['Thrown', 'Versatile (1d8)'], [20,60]),
+  warPick: buildMMWeapon('War pick', '1d8', 'piercing', []),
+  warhammer: buildMMWeapon('Warhammer', '1d8', 'bludgeoning', ['Versatile (1d10)']),
+  whip: buildMMWeapon('Whip', '1d4', 'slashing', ['Finesse', 'Reach']),
   /**
    * Martial Ranged
    */
-  blowgun: buildWeapon('1', 'piercing'),
-  'crossbow, hand': buildWeapon('1d6', 'piercing'),
-  'crossbow, heavy': buildWeapon('1d10', 'piercing'),
-  longbow: buildWeapon('1d8', 'piercing'),
-  net: buildWeapon('-', '-'),
+  blowgun: buildMRWeapon('Blowgun', '1', 'piercing', ['Ammunition', 'Loading'], [25,100]),
+  crossbowHand: buildMRWeapon('Crossbow, hand', '1d6', 'piercing', ['Ammunition', 'Light', 'Loading'], [30,120]),
+  crossbowHeavy: buildMRWeapon('Crossbow, heavy', '1d10', 'piercing', ['Ammunition', 'Heavy', 'Loading', 'Two-Handed'], [100,400]),
+  longbow: buildMRWeapon('Longbow', '1d8', 'piercing', ['Ammunition', 'Heavy', 'Two-Handed'], [150,600]),
+  net: buildMRWeapon('Net', '-', '-', ['Special', 'Thrown'], [5,15]),
 };
 
 export default WEAPONS;

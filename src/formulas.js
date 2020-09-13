@@ -125,16 +125,31 @@ export const getHitPointStatus = (character) => {
 
 
 /**
+ * Get ability used by weapon from object or return default
+ *
+ * @param {object} weapon - The character's weapon object
+ * @returns {string} - Either 'strength' or 'dexterity'
+ */
+const getWeaponAbility = ({ ability, type }) => {
+  if (ability) return ability;
+  
+  return WEAPONS[type].category === 'melee' ? 'strength' : 'dexterity';
+};
+
+
+/**
  * Get attack bonus from character object for a given weapon
  *
  * @param {object} character - The entire character object
- * @param {string} weapon - The weapon in question
+ * @param {object} weapon - The character's weapon object
  * @returns {number}
  */
 export const getWeaponAttack = (character, weapon) => {
-  const { ability, proficiency } = character.weapons[weapon];
-  const modifier = getAbilityModifier(character, ability);
-  return proficiency ? modifier + getProficiencyBonus(character) : modifier;
+  const ability = getWeaponAbility(weapon);
+  let attack = getAbilityModifier(character, ability);
+  if (weapon.proficiency) attack += getProficiencyBonus(character);
+  if (weapon.bonus) attack += weapon.bonus;
+  return attack;
 };
 
 
@@ -142,14 +157,17 @@ export const getWeaponAttack = (character, weapon) => {
  * Get damage die and modifier from character object for a given weapon
  *
  * @param {object} character - The entire character object
- * @param {string} weapon - The weapon in question
+ * @param {object} weapon - The character's weapon object
  * @returns {string}
  */
 export const getWeaponDamage = (character, weapon) => {
-  const ability = character.weapons[weapon].ability;
-  const modifier = getAbilityModifier(character, ability);
-  const signedMod = modifier < 0 ? `- ${Math.abs(modifier)}` : `+ ${modifier}`;
-  return `${WEAPONS[weapon].damageDie} ${signedMod}`;
+  const ability = getWeaponAbility(weapon);
+  let damage = getAbilityModifier(character, ability);
+  if (weapon.bonus) damage += weapon.bonus;
+  const sign = damage < 0 ? '-' : '+';
+  const type = WEAPONS[weapon.type];
+
+  return `${type.damageDie} ${sign} ${Math.abs(damage)} ${type.damageType}`;
 };
 
 
