@@ -17,6 +17,16 @@
   font-style: italic;
 }
 
+.Weapons .properties span + span {
+  padding-left: 4px;
+  position: relative;
+}
+.Weapons .properties span + span:before {
+  content: ',';
+  position: relative;
+  left: -3px;
+}
+
 .Weapons .MarkdownEditor {
   margin-top: 2rem;
 }

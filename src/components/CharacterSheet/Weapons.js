@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 
 import { DispatchContext } from '../App';
 import { Button, Table } from '../atoms';
-import { WEAPONS } from '../../constants';
+import { WEAPONS, WEAPON_PROPS } from '../../constants';
 import { UPDATE_CHARACTER } from '../../constants/actionTypes';
 import { getWeaponAttack, getWeaponDamage } from '../../formulas';
 import { MarkdownEditor } from '../molecules';
@@ -11,9 +11,12 @@ import './Weapons.css';
 
 
 const WeaponProperties = ({ properties }) => {
-  if (properties.length === 0) return null;
   return (
-    <small className="properties">{properties.join(", ")}</small>
+    <small className="properties">
+      {properties.map(p => (
+        <span title={WEAPON_PROPS[p.split(' ')[0].toLowerCase()]}>{p}</span>
+      ))}
+    </small>
   );
 };
 

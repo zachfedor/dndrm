@@ -56,3 +56,7 @@ a:hover {
   color: var(--blue-dark);
   text-decoration-color: var(--blue-dark);
 }
+
+*[title] {
+  cursor: help;
+}
