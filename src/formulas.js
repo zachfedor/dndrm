@@ -130,7 +130,7 @@ export const getHitPointStatus = (character) => {
  * @param {object} weapon - The character's weapon object
  * @returns {string} - Either 'strength' or 'dexterity'
  */
-const getWeaponAbility = ({ ability, type }) => {
+export const getWeaponAbility = ({ ability, type }) => {
   if (ability) return ability;
   
   return WEAPONS[type].category === 'melee' ? 'strength' : 'dexterity';

@@ -1,4 +1,6 @@
 .Weapons {
+  display: flex;
+  flex-direction: column;
   margin-top: 2rem;
 }
 
@@ -13,8 +15,9 @@
 }
 
 .Weapons .properties {
-  font-color: var(--gray);
+  display: block;
   font-style: italic;
+  margin: 0.3rem 0;
 }
 
 .Weapons .properties span + span {
@@ -27,7 +30,59 @@
   left: -3px;
 }
 
+.Weapons .Table nav {
+  margin: 0;
+}
+.Weapons .Table nav .Button {
+  margin: 0 0 0 1rem;
+}
+
+.Weapons .buttonGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.Weapons .buttonGroup .Button {
+  margin-left: 1rem;
+}
+
 .Weapons .MarkdownEditor {
   margin-top: 2rem;
+}
+
+.WeaponForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.WeaponForm .rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.WeaponForm .rows div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.WeaponForm label {
+  display: flex;
+  align-items: center;
+}
+
+.WeaponForm label > span {
+  margin-right: 1rem;
+}
+
+.WeaponForm .rows > div:last-of-type,
+.WeaponForm .Table {
+  margin-top: 1rem;
+}
+
+.WeaponForm .Table td:first-of-type,
+.WeaponForm .Table th:first-of-type {
+  text-align: center;
 }
 

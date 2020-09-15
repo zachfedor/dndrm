@@ -36,7 +36,12 @@
     width: 100%;
   }
 
+  .CharacterSheet article .column {
+    flex-grow: 1;
+  }
+
   .CharacterSheet article .column + .column {
+    margin-left: 2rem;
     width: 60%;
   }
 }
